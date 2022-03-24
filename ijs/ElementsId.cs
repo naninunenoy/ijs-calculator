@@ -8,7 +8,7 @@ public readonly struct ElementsId : IEquatable<ElementsId> {
     public readonly ElementsCode code;
     public readonly ElementsLevel level;
 
-    public ElementsId(ElementsCode code, ElementsLevel level) {
+    public ElementsId(ElementsCode code, ElementsLevel level = ElementsLevel.None) {
         this.code = code;
         this.level = level;
     }
