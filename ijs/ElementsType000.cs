@@ -3,7 +3,7 @@
 /// <summary>
 /// エレメンツの種別
 /// </summary>
-public enum ElementsType {
+public enum ElementsType000 {
+    /// <summary> ジャンプ </summary>
     Jump,
-    //TODO
 }

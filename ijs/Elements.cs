@@ -1,13 +1,13 @@
 ﻿namespace ijs; 
 
 public class Elements : IEquatable<Elements> {
-    public ElementsType Type { get; }
+    public ElementsType000 Type000 { get; }
     public ElementsId Id { get; }
     public ElementsName Name { get; }
     public BaseValue BaseValue { get; }
     
-    public Elements(ElementsType type, ElementsId id, ElementsName name, float baseValue) {
-        Type = type;
+    public Elements(ElementsType000 type000, ElementsId id, ElementsName name, float baseValue) {
+        Type000 = type000;
         Id = id;
         Name = name;
         BaseValue = new BaseValue(baseValue);
@@ -31,6 +31,6 @@ public class Elements : IEquatable<Elements> {
     }
 
     public override string ToString() {
-        return $"Type={Type},Id={Id},Name={Name},BaseValue={BaseValue.value}";
+        return $"Type={Type000},Id={Id},Name={Name},BaseValue={BaseValue.value}";
     }
 }
