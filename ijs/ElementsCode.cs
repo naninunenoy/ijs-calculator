@@ -71,7 +71,6 @@ public enum ElementsCode {
     _1TTh,
     _1STh,
     _1LoTh,
-    _1EuTh,
     _1FTh,
     _1LzTh,
     _1ATh,
