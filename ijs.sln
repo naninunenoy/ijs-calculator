@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ijs", "ijs\ijs.csproj", "{9BB7A31A-EB0D-4724-897E-A23744D0CA02}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ijs_test", "ijs_test\ijs_test.csproj", "{2D1777B5-AD5E-491B-82C8-9FF136C54D26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{9BB7A31A-EB0D-4724-897E-A23744D0CA02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BB7A31A-EB0D-4724-897E-A23744D0CA02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BB7A31A-EB0D-4724-897E-A23744D0CA02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D1777B5-AD5E-491B-82C8-9FF136C54D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D1777B5-AD5E-491B-82C8-9FF136C54D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D1777B5-AD5E-491B-82C8-9FF136C54D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D1777B5-AD5E-491B-82C8-9FF136C54D26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
