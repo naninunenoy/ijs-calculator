@@ -8,9 +8,8 @@ public class ElementsList {
         list = new List<IElements>();
     }
     
-    public ElementsList Build(params IElements[] elements) {
+    public void Build(params IElements[] elements) {
         list = elements.ToList();
-        return this;
     }
 
     public float TotalBaseValue() => list.Select(x => x.BaseValue).Sum();

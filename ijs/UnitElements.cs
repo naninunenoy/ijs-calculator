@@ -1,6 +1,6 @@
 ﻿namespace ijs; 
 
-public class UnitElements : IElements, IEquatable<IElements> {
+public class UnitElements : IElements {
     SportsElementsType Type { get; }
     public ElementsId Id { get; }
     public ElementsName Name { get; }

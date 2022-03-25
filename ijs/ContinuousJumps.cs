@@ -1,6 +1,6 @@
 ﻿namespace ijs;
 
-public class ContinuousJumps : IElements, IEquatable<IElements> {
+public class ContinuousJumps : IElements {
     const int maxJumpCount = 3;
     public IReadOnlyList<IElements> Jumps => jumps;
     List<IElements> jumps;
@@ -8,10 +8,7 @@ public class ContinuousJumps : IElements, IEquatable<IElements> {
         jumps = new List<IElements>();
     }
 
-    public ContinuousJumps Build(params IElements[] jumpElements) {
-        if (jumpElements.Length == 0) {
-            throw new ArgumentException("0回の連続ジャンプは作れません");
-        }
+    public void Build(params IElements[] jumpElements) {
         if (jumpElements.Any(x => x.ElementsType is not ElementsType.Jump)) {
             throw new ArgumentException("ジャンプでないエレメンツが含まれています");
         }
@@ -19,19 +16,14 @@ public class ContinuousJumps : IElements, IEquatable<IElements> {
             throw new ArgumentException($"連続ジャンプは最高{maxJumpCount}回です");
         }
         jumps = jumpElements.ToList();
-        return this;
     }
 
-    public string Name => jumps
-        .Select(x => x.Name)
-        .Aggregate("", (total, next) => $"{total}+{next}");
-    public string FullCode => jumps
-        .Select(x => x.FullCode)
-        .Aggregate("", (total, next) => $"{total}+{next}");
+    public string Name => string.Join("+", jumps.Select(x => x.Name));
+    public string FullCode => string.Join("+", jumps.Select(x => x.FullCode));
     public float BaseValue => jumps
         .Select(x => x.BaseValue)
         .Sum();
-    ElementsType IElements.ElementsType => ElementsType.Jump;
+    public ElementsType ElementsType => ElementsType.Jump;
 
     public bool Equals(IElements? other) {
         // code(1AとかFCSp4とか)で同一エレメントかを判定
