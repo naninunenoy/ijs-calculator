@@ -1,14 +1,14 @@
 ﻿namespace ijs; 
 
-public class UniqueSportsTypeElementsList {
+public class ElementsList {
     List<IElements> list;
     public IReadOnlyList<IElements> List => list;
 
-    public UniqueSportsTypeElementsList() {
+    public ElementsList() {
         list = new List<IElements>();
     }
     
-    public UniqueSportsTypeElementsList Build(params IElements[] elements) {
+    public ElementsList Build(params IElements[] elements) {
         list = elements.ToList();
         return this;
     }
