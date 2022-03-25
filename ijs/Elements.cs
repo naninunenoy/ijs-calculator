@@ -1,6 +1,8 @@
-﻿namespace ijs; 
+﻿using System.Reflection.Metadata.Ecma335;
 
-public class Elements : IEquatable<Elements> {
+namespace ijs; 
+
+public class Elements : IElements, IEquatable<IElements> {
     public ElementsType Type { get; }
     public ElementsId Id { get; }
     public ElementsName Name { get; }
@@ -13,24 +15,29 @@ public class Elements : IEquatable<Elements> {
         BaseValue = baseValue;
     }
 
-    public bool Equals(Elements? other) {
-        if (ReferenceEquals(null, other)) return false;
-        if (ReferenceEquals(this, other)) return true;
-        return Id.Equals(other.Id);
+    public override string ToString() {
+        return $"Type={Type},Id={Id},Name={Name},BaseValue={BaseValue.value}";
+    }
+
+    public bool Equals(IElements? other) {
+        // code(1AとかFCSp4とか)で同一エレメントかを判定
+        var mine = Id.ToString().ToLowerInvariant();
+        var his = other?.FullCode.ToLowerInvariant() ?? "";
+        return mine.Equals(his);
     }
 
     public override bool Equals(object? obj) {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((Elements)obj);
+        return Equals((IElements)obj);
     }
 
     public override int GetHashCode() {
         return Id.GetHashCode();
     }
-
-    public override string ToString() {
-        return $"Type={Type},Id={Id},Name={Name},BaseValue={BaseValue.value}";
-    }
+    
+    string IElements.FullCode => Id.Code.ToEnumString();
+    float IElements.BaseValue => BaseValue.value;
+    string IElements.Name => Name.jpn;
 }
