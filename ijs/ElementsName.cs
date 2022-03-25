@@ -13,8 +13,8 @@ public readonly struct ElementsName {
     }
 
     public static ElementsName FromElementsId(ElementsId elementsId) {
-        var lv = $" レベル{elementsId.level.ToEnumString()}";
-        return elementsId.code switch {
+        var lv = $" レベル{elementsId.Level.ToEnumString()}";
+        return elementsId.Code switch {
             ElementsCode._1T => new ElementsName("1回転トウループ"),
             ElementsCode._1S => new ElementsName("1回転サルコウ"),
             ElementsCode._1Lo => new ElementsName("1回転ループ"),
@@ -119,7 +119,7 @@ public readonly struct ElementsName {
             ElementsCode.ChLi1 => new ElementsName("コレオグラフィックダンスリフト"),
             ElementsCode.ChSp1 => new ElementsName("コレオグラフィックスピニングムーブメント"),
             ElementsCode.ChTw1 => new ElementsName("コレオグラフィックツイズリングムーブメント"),
-            _ => throw new ArgumentOutOfRangeException(nameof(elementsId.code), elementsId.code, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(elementsId.Code), elementsId.Code, null)
         };
     }
 }

@@ -16,8 +16,8 @@ public readonly struct BaseValue {
     }
 
     public static BaseValue FromElementsId(ElementsId elementsId) {
-        var lv = elementsId.level;
-        var value = elementsId.code switch {
+        var lv = elementsId.Level;
+        var value = elementsId.Code switch {
             ElementsCode._1T => 0.4F,
             ElementsCode._1S => 0.4F,
             ElementsCode._1Lo => 0.5F,

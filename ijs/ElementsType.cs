@@ -1,14 +1,14 @@
 ﻿namespace ijs;
 
 public readonly struct ElementsType {
-    public readonly SportsType sportsType;
-    public readonly UniqueElementsType uniqueElementsType;
+    public readonly SportsType SportsType;
+    public readonly UniqueElementsType UniqueElementsType;
     public ElementsType(SportsType sportsType, UniqueElementsType uniqueElementsType) {
-        this.sportsType = sportsType;
-        this.uniqueElementsType = uniqueElementsType;
+        SportsType = sportsType;
+        UniqueElementsType = uniqueElementsType;
     }
 
     public override string ToString() {
-        return $"{uniqueElementsType}({sportsType})";
+        return $"{UniqueElementsType}({SportsType})";
     }
 }

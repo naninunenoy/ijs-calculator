@@ -37,7 +37,7 @@ internal static class ElementsTypeList {
         yield return IceDanceChoreographicElements;
     }
 
-    public static IEnumerable<ElementsType> Single() => All().Where(x => x.sportsType == SportsType.Single);
-    public static IEnumerable<ElementsType> Pair() => All().Where(x => x.sportsType == SportsType.Pair);
-    public static IEnumerable<ElementsType> IceDance() => All().Where(x => x.sportsType == SportsType.IceDance);
+    public static IEnumerable<ElementsType> Single() => All().Where(x => x.SportsType == SportsType.Single);
+    public static IEnumerable<ElementsType> Pair() => All().Where(x => x.SportsType == SportsType.Pair);
+    public static IEnumerable<ElementsType> IceDance() => All().Where(x => x.SportsType == SportsType.IceDance);
 }
