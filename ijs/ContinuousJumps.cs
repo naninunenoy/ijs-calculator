@@ -3,16 +3,16 @@
 public class ContinuousJumps : IElements, IEquatable<IElements> {
     const int maxJumpCount = 3;
     public IReadOnlyList<IElements> Jumps => jumps;
-    List<UnitElements> jumps;
+    List<IElements> jumps;
     public ContinuousJumps() {
-        jumps = new List<UnitElements>();
+        jumps = new List<IElements>();
     }
 
-    public ContinuousJumps Build(params UnitElements[] jumpElements) {
+    public ContinuousJumps Build(params IElements[] jumpElements) {
         if (jumpElements.Length == 0) {
             throw new ArgumentException("0回の連続ジャンプは作れません");
         }
-        if (jumpElements.Any(x => x.Type.ElementsType is not ElementsType.Jump)) {
+        if (jumpElements.Any(x => x.ElementsType is not ElementsType.Jump)) {
             throw new ArgumentException("ジャンプでないエレメンツが含まれています");
         }
         if (jumpElements.Length > maxJumpCount) {
@@ -26,10 +26,10 @@ public class ContinuousJumps : IElements, IEquatable<IElements> {
         .Select(x => x.Name)
         .Aggregate("", (total, next) => $"{total}+{next}");
     public string FullCode => jumps
-        .Select(x => x.Id.Code)
+        .Select(x => x.FullCode)
         .Aggregate("", (total, next) => $"{total}+{next}");
     public float BaseValue => jumps
-        .Select(x => x.BaseValue.value)
+        .Select(x => x.BaseValue)
         .Sum();
     ElementsType IElements.ElementsType => ElementsType.Jump;
 

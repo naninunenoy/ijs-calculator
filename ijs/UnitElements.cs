@@ -1,12 +1,12 @@
 ﻿namespace ijs; 
 
 public class UnitElements : IElements, IEquatable<IElements> {
-    public SportsElementsType Type { get; }
+    SportsElementsType Type { get; }
     public ElementsId Id { get; }
     public ElementsName Name { get; }
     public BaseValue BaseValue { get; }
     
-    public UnitElements(SportsElementsType type, ElementsId id, ElementsName name, BaseValue baseValue) {
+    internal UnitElements(SportsElementsType type, ElementsId id, ElementsName name, BaseValue baseValue) {
         Type = type;
         Id = id;
         Name = name;
