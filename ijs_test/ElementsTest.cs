@@ -6,7 +6,7 @@ namespace ijs_test;
 public class ElementsTest {
     [Fact]
     public void ToStringTest() {
-        var type = ElementsTypeList.SingleJump;
+        var type = new ElementsType(SportsType.Single, UniqueElementsType.Jump);
         var id = new ElementsId(ElementsCode._1T, ElementsLevel.None);
         var name = new ElementsName("1回転トウループ");
         var baseValue = new BaseValue(0.4F);

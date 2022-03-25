@@ -1,6 +1,6 @@
 ﻿namespace ijs;
 
-public static class ElementsIdTable {
+internal static class ElementsIdTable {
     static readonly ElementsCode[] AllCode = (ElementsCode[])Enum.GetValues(typeof(ElementsCode));
     static readonly ElementsLevel[] AllLevel = ((ElementsLevel[])Enum.GetValues(typeof(ElementsLevel)))
         .Where(lv => lv is not ElementsLevel.None)
