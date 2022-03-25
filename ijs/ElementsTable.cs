@@ -1,38 +1,41 @@
-﻿namespace ijs; 
+﻿namespace ijs;
 
 public static class ElementsTable {
-    public static readonly Elements[] SingleElements;
-    public static readonly Elements[] PairElements;
-    public static readonly Elements[] IceDanceElements;
+    public static readonly IReadOnlyDictionary<ElementsId, Elements> SingleElementsDict;
+    public static readonly IReadOnlyDictionary<ElementsId, Elements> PairElementsDict;
+    public static readonly IReadOnlyDictionary<ElementsId, Elements> IceDanceElementsDict;
+    public static IEnumerable<Elements> SingleElementsList => SingleElementsDict.Values;
+    public static IEnumerable<Elements> PairElementsList => PairElementsDict.Values;
+    public static IEnumerable<Elements> IceDanceElementsList => IceDanceElementsDict.Values;
 
     static ElementsTable() {
-        SingleElements = ElementsTypeList.Single()
+        SingleElementsDict = ElementsTypeList.Single()
             .Select(x => (x, ElementsIdTable.SingleJumpElementsIds()
-                    .Concat(ElementsIdTable.SingleSpinElementsIds())
-                    .Concat(ElementsIdTable.SingleStepSequenceElementsIds())))
+                .Concat(ElementsIdTable.SingleSpinElementsIds())
+                .Concat(ElementsIdTable.SingleStepSequenceElementsIds())))
             .SelectMany(ToElements)
-            .ToArray();
-        PairElements = ElementsTypeList.Pair()
+            .ToDictionary(x => x.Id);
+        PairElementsDict = ElementsTypeList.Pair()
             .Select(x => (x, ElementsIdTable.PairJumpElementsIds()
-                    .Concat(ElementsIdTable.PairStepSequenceElementsIds())
-                    .Concat(ElementsIdTable.PairLiftElementsIds())
-                    .Concat(ElementsIdTable.PairTwistLiftElementsIds())
-                    .Concat(ElementsIdTable.PairThrowJumpElementsIds())
-                    .Concat(ElementsIdTable.PairDeathSpiralElementsIds())
-                    .Concat(ElementsIdTable.PairSpinElementsIds())))
+                .Concat(ElementsIdTable.PairStepSequenceElementsIds())
+                .Concat(ElementsIdTable.PairLiftElementsIds())
+                .Concat(ElementsIdTable.PairTwistLiftElementsIds())
+                .Concat(ElementsIdTable.PairThrowJumpElementsIds())
+                .Concat(ElementsIdTable.PairDeathSpiralElementsIds())
+                .Concat(ElementsIdTable.PairSpinElementsIds())))
             .SelectMany(ToElements)
-            .ToArray();
-        IceDanceElements = ElementsTypeList.IceDance()
+            .ToDictionary(x => x.Id);
+        IceDanceElementsDict = ElementsTypeList.IceDance()
             .Select(x => (x, ElementsIdTable.IceDancePatternDanceElementsIds()
-                    .Concat(ElementsIdTable.IceDanceSpinElementsIds())
-                    .Concat(ElementsIdTable.IceDanceLiftElementsIds())
-                    .Concat(ElementsIdTable.IceDanceTwizzleElementsIds())
-                    .Concat(ElementsIdTable.IceDanceStepSequenceElementsIds())
-                    .Concat(ElementsIdTable.IceDanceChoreographicElementsIds())))
+                .Concat(ElementsIdTable.IceDanceSpinElementsIds())
+                .Concat(ElementsIdTable.IceDanceLiftElementsIds())
+                .Concat(ElementsIdTable.IceDanceTwizzleElementsIds())
+                .Concat(ElementsIdTable.IceDanceStepSequenceElementsIds())
+                .Concat(ElementsIdTable.IceDanceChoreographicElementsIds())))
             .SelectMany(ToElements)
-            .ToArray();
+            .ToDictionary(x => x.Id);
     }
-    
+
     static IEnumerable<Elements> ToElements((ElementsType elementType, IEnumerable<ElementsId> elementsIds) tuple) {
         var (type, ids) = tuple;
         return ids.Select(id => new Elements(
