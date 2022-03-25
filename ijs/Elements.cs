@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace ijs; 
+﻿namespace ijs; 
 
 public class Elements : IElements, IEquatable<IElements> {
     public ElementsType Type { get; }
