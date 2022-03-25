@@ -7,15 +7,28 @@ public static class ElementsTable {
 
     static ElementsTable() {
         SingleElements = ElementsTypeList.Single()
-            .Select(x => (x, ElementsIdTable.SingleElementsIds()))
+            .Select(x => (x, ElementsIdTable.SingleJumpElementsIds()
+                    .Concat(ElementsIdTable.SingleSpinElementsIds())
+                    .Concat(ElementsIdTable.SingleStepSequenceElementsIds())))
             .SelectMany(ToElements)
             .ToArray();
         PairElements = ElementsTypeList.Pair()
-            .Select(x => (x, ElementsIdTable.PairElementsIds()))
+            .Select(x => (x, ElementsIdTable.PairJumpElementsIds()
+                    .Concat(ElementsIdTable.PairStepSequenceElementsIds())
+                    .Concat(ElementsIdTable.PairLiftElementsIds())
+                    .Concat(ElementsIdTable.PairTwistLiftElementsIds())
+                    .Concat(ElementsIdTable.PairThrowJumpElementsIds())
+                    .Concat(ElementsIdTable.PairDeathSpiralElementsIds())
+                    .Concat(ElementsIdTable.PairSpinElementsIds())))
             .SelectMany(ToElements)
             .ToArray();
         IceDanceElements = ElementsTypeList.IceDance()
-            .Select(x => (x, ElementsIdTable.IceDanceElementsIds()))
+            .Select(x => (x, ElementsIdTable.IceDancePatternDanceElementsIds()
+                    .Concat(ElementsIdTable.IceDanceSpinElementsIds())
+                    .Concat(ElementsIdTable.IceDanceLiftElementsIds())
+                    .Concat(ElementsIdTable.IceDanceTwizzleElementsIds())
+                    .Concat(ElementsIdTable.IceDanceStepSequenceElementsIds())
+                    .Concat(ElementsIdTable.IceDanceChoreographicElementsIds())))
             .SelectMany(ToElements)
             .ToArray();
     }
