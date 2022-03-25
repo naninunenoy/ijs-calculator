@@ -3,12 +3,12 @@
 public class ContinuousJumps : IElements, IEquatable<IElements> {
     const int maxJumpCount = 3;
     public IReadOnlyList<IElements> Jumps => jumps;
-    List<Elements> jumps;
+    List<UnitElements> jumps;
     public ContinuousJumps() {
-        jumps = new List<Elements>();
+        jumps = new List<UnitElements>();
     }
 
-    public ContinuousJumps Build(params Elements[] jumpElements) {
+    public ContinuousJumps Build(params UnitElements[] jumpElements) {
         if (jumpElements.Length == 0) {
             throw new ArgumentException("0回の連続ジャンプは作れません");
         }

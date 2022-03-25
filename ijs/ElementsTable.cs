@@ -1,12 +1,12 @@
 ﻿namespace ijs;
 
 public static class ElementsTable {
-    public static readonly IReadOnlyDictionary<ElementsId, Elements> SingleElementsDict;
-    public static readonly IReadOnlyDictionary<ElementsId, Elements> PairElementsDict;
-    public static readonly IReadOnlyDictionary<ElementsId, Elements> IceDanceElementsDict;
-    public static IEnumerable<Elements> SingleElementsList => SingleElementsDict.Values;
-    public static IEnumerable<Elements> PairElementsList => PairElementsDict.Values;
-    public static IEnumerable<Elements> IceDanceElementsList => IceDanceElementsDict.Values;
+    public static readonly IReadOnlyDictionary<ElementsId, UnitElements> SingleElementsDict;
+    public static readonly IReadOnlyDictionary<ElementsId, UnitElements> PairElementsDict;
+    public static readonly IReadOnlyDictionary<ElementsId, UnitElements> IceDanceElementsDict;
+    public static IEnumerable<UnitElements> SingleElementsList => SingleElementsDict.Values;
+    public static IEnumerable<UnitElements> PairElementsList => PairElementsDict.Values;
+    public static IEnumerable<UnitElements> IceDanceElementsList => IceDanceElementsDict.Values;
     
     static ElementsTable() {
         SingleElementsDict = ElementsTypeList.Single()
@@ -43,9 +43,9 @@ public static class ElementsTable {
         return ids.Aggregate(Enumerable.Empty<ElementsId>(), (total, x) => total.Concat(x));
     }
     
-    static IEnumerable<Elements> ToElements((ElementsType elementType, IEnumerable<ElementsId> elementsIds) tuple) {
+    static IEnumerable<UnitElements> ToElements((ElementsType elementType, IEnumerable<ElementsId> elementsIds) tuple) {
         var (type, ids) = tuple;
-        return ids.Select(id => new Elements(
+        return ids.Select(id => new UnitElements(
             type, id, ElementsName.FromElementsId(id), BaseValue.FromElementsId(id)));
     }
 }

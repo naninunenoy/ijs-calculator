@@ -1,14 +1,14 @@
 ﻿namespace ijs; 
 
 public class UniqueSportsTypeElementsList {
-    List<Elements> list;
-    public IReadOnlyList<Elements> List => list;
+    List<UnitElements> list;
+    public IReadOnlyList<UnitElements> List => list;
 
     public UniqueSportsTypeElementsList() {
-        list = new List<Elements>();
+        list = new List<UnitElements>();
     }
 
-    public UniqueSportsTypeElementsList Build(params Elements[] elements) {
+    public UniqueSportsTypeElementsList Build(params UnitElements[] elements) {
         // 異なる種別のエレメンツが入っていた場合(シングルとアイスダンスが混ざっているなど)例外
         var sportsTypeHash = new HashSet<SportsType>(elements.Select(x => x.Type.SportsType));
         if (sportsTypeHash.Count != 1) {
