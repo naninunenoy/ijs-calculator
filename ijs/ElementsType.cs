@@ -1,9 +1,9 @@
 ﻿namespace ijs;
 
-public readonly struct ElementType {
+public readonly struct ElementsType {
     public readonly SportsType sportsType;
     public readonly UniqueElementsType uniqueElementsType;
-    public ElementType(SportsType sportsType, UniqueElementsType uniqueElementsType) {
+    public ElementsType(SportsType sportsType, UniqueElementsType uniqueElementsType) {
         this.sportsType = sportsType;
         this.uniqueElementsType = uniqueElementsType;
     }

@@ -1,12 +1,12 @@
 ﻿namespace ijs; 
 
 public class Elements : IEquatable<Elements> {
-    public ElementType Type { get; }
+    public ElementsType Type { get; }
     public ElementsId Id { get; }
     public ElementsName Name { get; }
     public BaseValue BaseValue { get; }
     
-    public Elements(ElementType type, ElementsId id, ElementsName name, BaseValue baseValue) {
+    public Elements(ElementsType type, ElementsId id, ElementsName name, BaseValue baseValue) {
         Type = type;
         Id = id;
         Name = name;

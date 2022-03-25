@@ -33,7 +33,7 @@ public static class ElementsTable {
             .ToArray();
     }
     
-    static IEnumerable<Elements> ToElements((ElementType elementType, IEnumerable<ElementsId> elementsIds) tuple) {
+    static IEnumerable<Elements> ToElements((ElementsType elementType, IEnumerable<ElementsId> elementsIds) tuple) {
         var (type, ids) = tuple;
         return ids.Select(id => new Elements(
             type, id, ElementsName.FromElementsId(id), BaseValue.FromElementsId(id)));
