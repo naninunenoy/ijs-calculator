@@ -6,11 +6,11 @@ public class Elements : IEquatable<Elements> {
     public ElementsName Name { get; }
     public BaseValue BaseValue { get; }
     
-    public Elements(ElementType type, ElementsId id, ElementsName name, float baseValue) {
+    public Elements(ElementType type, ElementsId id, ElementsName name, BaseValue baseValue) {
         Type = type;
         Id = id;
         Name = name;
-        BaseValue = new BaseValue(baseValue);
+        BaseValue = baseValue;
     }
 
     public bool Equals(Elements? other) {

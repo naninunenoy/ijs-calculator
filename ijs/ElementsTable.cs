@@ -36,6 +36,6 @@ public static class ElementsTable {
     static IEnumerable<Elements> ToElements((ElementType elementType, IEnumerable<ElementsId> elementsIds) tuple) {
         var (type, ids) = tuple;
         return ids.Select(id => new Elements(
-            type, id, ElementsName.FromElementsId(id), BaseValue.FromElementsId(id).value));
+            type, id, ElementsName.FromElementsId(id), BaseValue.FromElementsId(id)));
     }
 }
