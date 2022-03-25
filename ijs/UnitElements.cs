@@ -38,4 +38,5 @@ public class UnitElements : IElements, IEquatable<IElements> {
     string IElements.FullCode => Id.Code.ToEnumString();
     float IElements.BaseValue => BaseValue.value;
     string IElements.Name => Name.jpn;
+    UniqueElementsType IElements.ElementsType => Type.UniqueElementsType;
 }

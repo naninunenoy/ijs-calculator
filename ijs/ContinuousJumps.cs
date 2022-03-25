@@ -31,6 +31,7 @@ public class ContinuousJumps : IElements, IEquatable<IElements> {
     public float BaseValue => jumps
         .Select(x => x.BaseValue.value)
         .Sum();
+    UniqueElementsType IElements.ElementsType => UniqueElementsType.Jump;
 
     public bool Equals(IElements? other) {
         // code(1AとかFCSp4とか)で同一エレメントかを判定
