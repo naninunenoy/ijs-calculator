@@ -101,7 +101,7 @@ public readonly struct ElementsName {
             ElementsCode.PCoSp => new ElementsName($"ペアコンビネーション{lv}"),
             ElementsCode._1BL => new ElementsName($"ブルース第1シークエンス{lv}"),
             ElementsCode._2BL => new ElementsName($"ブルース第2シークエンス{lv}"),
-            ElementsCode._1Mn => new ElementsName($"ミッドナイトブルース第1シークエンス{lv}"),
+            ElementsCode._1MN => new ElementsName($"ミッドナイトブルース第1シークエンス{lv}"),
             ElementsCode.Sp => new ElementsName($"スピン{lv}"),
             ElementsCode.CoSp => new ElementsName($"コンビネーションスピン{lv}"),
             ElementsCode.StaLi => new ElementsName($"ステーショナリーリフト{lv}"),

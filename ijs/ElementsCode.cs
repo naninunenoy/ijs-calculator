@@ -103,7 +103,7 @@ public enum ElementsCode {
     // パターンダンス(アイスダンス)
     _1BL,
     _2BL,
-    _1Mn,
+    _1MN,
     // スピン(アイスダンス)
     Sp,
     CoSp,
