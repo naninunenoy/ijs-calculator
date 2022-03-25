@@ -1,12 +1,12 @@
 ﻿namespace ijs; 
 
 public class UnitElements : IElements, IEquatable<IElements> {
-    public ElementsType Type { get; }
+    public SportsElementsType Type { get; }
     public ElementsId Id { get; }
     public ElementsName Name { get; }
     public BaseValue BaseValue { get; }
     
-    public UnitElements(ElementsType type, ElementsId id, ElementsName name, BaseValue baseValue) {
+    public UnitElements(SportsElementsType type, ElementsId id, ElementsName name, BaseValue baseValue) {
         Type = type;
         Id = id;
         Name = name;
@@ -38,5 +38,5 @@ public class UnitElements : IElements, IEquatable<IElements> {
     string IElements.FullCode => Id.Code.ToEnumString();
     float IElements.BaseValue => BaseValue.value;
     string IElements.Name => Name.jpn;
-    UniqueElementsType IElements.ElementsType => Type.UniqueElementsType;
+    ElementsType IElements.ElementsType => Type.ElementsType;
 }

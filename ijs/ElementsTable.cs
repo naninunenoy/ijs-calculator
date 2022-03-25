@@ -43,7 +43,7 @@ public static class ElementsTable {
         return ids.Aggregate(Enumerable.Empty<ElementsId>(), (total, x) => total.Concat(x));
     }
     
-    static IEnumerable<UnitElements> ToElements((ElementsType elementType, IEnumerable<ElementsId> elementsIds) tuple) {
+    static IEnumerable<UnitElements> ToElements((SportsElementsType elementType, IEnumerable<ElementsId> elementsIds) tuple) {
         var (type, ids) = tuple;
         return ids.Select(id => new UnitElements(
             type, id, ElementsName.FromElementsId(id), BaseValue.FromElementsId(id)));

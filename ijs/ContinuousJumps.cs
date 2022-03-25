@@ -12,7 +12,7 @@ public class ContinuousJumps : IElements, IEquatable<IElements> {
         if (jumpElements.Length == 0) {
             throw new ArgumentException("0回の連続ジャンプは作れません");
         }
-        if (jumpElements.Any(x => x.Type.UniqueElementsType is not UniqueElementsType.Jump)) {
+        if (jumpElements.Any(x => x.Type.ElementsType is not ElementsType.Jump)) {
             throw new ArgumentException("ジャンプでないエレメンツが含まれています");
         }
         if (jumpElements.Length > maxJumpCount) {
@@ -31,7 +31,7 @@ public class ContinuousJumps : IElements, IEquatable<IElements> {
     public float BaseValue => jumps
         .Select(x => x.BaseValue.value)
         .Sum();
-    UniqueElementsType IElements.ElementsType => UniqueElementsType.Jump;
+    ElementsType IElements.ElementsType => ElementsType.Jump;
 
     public bool Equals(IElements? other) {
         // code(1AとかFCSp4とか)で同一エレメントかを判定

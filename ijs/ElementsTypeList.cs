@@ -1,24 +1,24 @@
 ﻿namespace ijs; 
 
 internal static class ElementsTypeList {
-    static readonly ElementsType SingleJump = new(SportsType.Single, UniqueElementsType.Jump);
-    static readonly ElementsType SingleSpin = new(SportsType.Single, UniqueElementsType.Spin);
-    static readonly ElementsType SingleStepSequence = new(SportsType.Single, UniqueElementsType.StepSequence);
-    static readonly ElementsType PairJump = new(SportsType.Pair, UniqueElementsType.Jump);
-    static readonly ElementsType PairStepSequence = new(SportsType.Pair, UniqueElementsType.StepSequence);
-    static readonly ElementsType PairLift = new(SportsType.Pair, UniqueElementsType.Lift);
-    static readonly ElementsType PairTwistLift = new(SportsType.Pair, UniqueElementsType.TwistLift);
-    static readonly ElementsType PairThrowJump = new(SportsType.Pair, UniqueElementsType.ThrowJump);
-    static readonly ElementsType PairDeathSpiral = new(SportsType.Pair, UniqueElementsType.DeathSpiral);
-    static readonly ElementsType PairSpin = new(SportsType.Pair, UniqueElementsType.Spin);
-    static readonly ElementsType IceDancePatternDance = new(SportsType.IceDance, UniqueElementsType.PatternDance);
-    static readonly ElementsType IceDanceSpin = new(SportsType.IceDance, UniqueElementsType.Spin);
-    static readonly ElementsType IceDanceLift = new(SportsType.IceDance, UniqueElementsType.Lift);
-    static readonly ElementsType IceDanceTwizzle = new(SportsType.IceDance, UniqueElementsType.Twizzle);
-    static readonly ElementsType IceDanceStepSequence = new(SportsType.IceDance, UniqueElementsType.StepSequence);
-    static readonly ElementsType IceDanceChoreographicElements = new(SportsType.IceDance, UniqueElementsType.ChoreographicElements);
+    static readonly SportsElementsType SingleJump = new(SportsType.Single, ElementsType.Jump);
+    static readonly SportsElementsType SingleSpin = new(SportsType.Single, ElementsType.Spin);
+    static readonly SportsElementsType SingleStepSequence = new(SportsType.Single, ElementsType.StepSequence);
+    static readonly SportsElementsType PairJump = new(SportsType.Pair, ElementsType.Jump);
+    static readonly SportsElementsType PairStepSequence = new(SportsType.Pair, ElementsType.StepSequence);
+    static readonly SportsElementsType PairLift = new(SportsType.Pair, ElementsType.Lift);
+    static readonly SportsElementsType PairTwistLift = new(SportsType.Pair, ElementsType.TwistLift);
+    static readonly SportsElementsType PairThrowJump = new(SportsType.Pair, ElementsType.ThrowJump);
+    static readonly SportsElementsType PairDeathSpiral = new(SportsType.Pair, ElementsType.DeathSpiral);
+    static readonly SportsElementsType PairSpin = new(SportsType.Pair, ElementsType.Spin);
+    static readonly SportsElementsType IceDancePatternDance = new(SportsType.IceDance, ElementsType.PatternDance);
+    static readonly SportsElementsType IceDanceSpin = new(SportsType.IceDance, ElementsType.Spin);
+    static readonly SportsElementsType IceDanceLift = new(SportsType.IceDance, ElementsType.Lift);
+    static readonly SportsElementsType IceDanceTwizzle = new(SportsType.IceDance, ElementsType.Twizzle);
+    static readonly SportsElementsType IceDanceStepSequence = new(SportsType.IceDance, ElementsType.StepSequence);
+    static readonly SportsElementsType IceDanceChoreographicElements = new(SportsType.IceDance, ElementsType.ChoreographicElements);
 
-    static IEnumerable<ElementsType> All() {
+    static IEnumerable<SportsElementsType> All() {
         yield return SingleJump;
         yield return SingleSpin;
         yield return SingleStepSequence;
@@ -37,7 +37,7 @@ internal static class ElementsTypeList {
         yield return IceDanceChoreographicElements;
     }
 
-    public static IEnumerable<ElementsType> Single() => All().Where(x => x.SportsType == SportsType.Single);
-    public static IEnumerable<ElementsType> Pair() => All().Where(x => x.SportsType == SportsType.Pair);
-    public static IEnumerable<ElementsType> IceDance() => All().Where(x => x.SportsType == SportsType.IceDance);
+    public static IEnumerable<SportsElementsType> Single() => All().Where(x => x.SportsType == SportsType.Single);
+    public static IEnumerable<SportsElementsType> Pair() => All().Where(x => x.SportsType == SportsType.Pair);
+    public static IEnumerable<SportsElementsType> IceDance() => All().Where(x => x.SportsType == SportsType.IceDance);
 }
