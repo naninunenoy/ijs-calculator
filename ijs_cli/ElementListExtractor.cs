@@ -13,42 +13,41 @@ public class ElementListExtractor {
     }
 
     public string Extract() {
-        var lineNumber = 1;
-        var lines = new List<Line>();
-        foreach (var x in elementList.List) {
-            var header = $"{lineNumber++,3}. {x.Name}({x.FullCode}):";
-            var content = x.BaseValue.ToString("F2", CultureInfo.InvariantCulture);
-            if (x is SecondHalfElement) {
-                content += $" ※後半につき{SecondHalfElement.Magnification:F1}倍加点";
-            }
-            lines.Add(new Line(header, content));
-        }
-
-        var maxHeaderLength = lines.Max(x => x.GetHeaderLength());
+        var lines = elementList.List
+            .Select((x, i) => new Line(i + 1, x.Name, x.FullCode, x.BaseValue,
+                x is SecondHalfElement ? $"後半につき{SecondHalfElement.Magnification:F1}倍加点" : ""))
+            .ToArray();
+        
+        var maxWidth = lines.Max(x => x.GetWidth());
         var stringBuilder = new StringBuilder();
         stringBuilder.AppendLine("==== 内訳 ===============================================================");
         foreach (var line in lines) {
-            var spaceNum = maxHeaderLength - line.GetHeaderLength();
-            stringBuilder.AppendLine(line.ToString(spaceNum));
+            stringBuilder.AppendLine(line.ToLineString(maxWidth - line.GetWidth()));
         }
         stringBuilder.AppendLine("=========================================================================");
         return stringBuilder.ToString();
     }
 
     readonly struct Line {
-        const int tabLength = 8;
-        readonly string header;
-        readonly string content;
-        public Line(string header, string content) {
-            this.header = header;
-            this.content = content;
-        }
-        public int GetHeaderLength() {
-            return header.GetWidth(true);
+        readonly int no;
+        readonly string name;
+        readonly string code;
+        readonly double score;
+        readonly string supplement;
+
+        public Line(int no, string name, string code, double score, string supplement) {
+            this.no = no;
+            this.name = name;
+            this.code = code;
+            this.score = score;
+            this.supplement = supplement;
         }
 
-        public string ToString(int spaceNum) {
-            return $"{header}{new string(' ', spaceNum + 1)}{content}";
+        public int GetWidth() =>  name.GetWidth(true) + code.GetWidth(false);
+
+        public string ToLineString(int spaceNumBetweenNameAndCode) {
+            return $"{no,2}. {name}{new string(' ', spaceNumBetweenNameAndCode)}({code})" +
+                   $": {score.ToString("F2", CultureInfo.InvariantCulture),5} {supplement}";
         }
     }
 }
