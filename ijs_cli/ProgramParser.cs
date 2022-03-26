@@ -57,6 +57,6 @@ public class ProgramParser {
     }
 
     static IEnumerable<ElementCode> SplitProgramCodes(string program) {
-        return program.Split("-").Select(x => new ElementCode(x));
+        return program.Split("-", StringSplitOptions.RemoveEmptyEntries).Select(x => new ElementCode(x));
     }
 }

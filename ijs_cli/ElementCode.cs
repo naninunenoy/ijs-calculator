@@ -7,7 +7,7 @@ public class ElementCode {
     }
 
     public bool IsContinuousJump(out ElementCode[] jumps) {
-        var codes = rawString.Split("+");
+        var codes = rawString.Split("+", StringSplitOptions.RemoveEmptyEntries);
         if (codes.Length == 0) {
             jumps = Array.Empty<ElementCode>();
             return false;

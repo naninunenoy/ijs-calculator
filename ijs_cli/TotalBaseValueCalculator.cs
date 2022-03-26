@@ -19,13 +19,8 @@ public class TotalBaseValueCalculator {
             _ => throw new ArgumentException(
                 $"種目の指定が正しくありません={sportsType} 有効なのは single/pair/icedance のいずれか1つです")
         };
-        ElementList elementList;
         var parser = new ProgramParser(allElements.ToArray());
-        try {
-            elementList = parser.Parse(programRawArg);
-        } catch (Exception e) {
-            return (default, e.Message);
-        }
+        var elementList = parser.Parse(programRawArg);
 
         var extractor = new ElementListExtractor(elementList);
         return (new TotalBaseValue(elementList.TotalBaseValue()), extractor.Extract());
