@@ -12,7 +12,7 @@ const string programDescription =
     "* エレメントは - で区切ってください\n" +
     "* 連続ジャンプは + で区切ってください\n" +
     "* 後半のジャンプには末尾に x をつけてください\n" +
-    "* 全てのエレメントは --list で確認できます";
+    "* 全てのエレメントは --list true で確認できます";
 
 var programOption = new Option<string>(
     "--program",
@@ -27,7 +27,7 @@ var sportsOption = new Option<string>(
 
 var listOption = new Option<bool>(
     "--list",
-    getDefaultValue: () => true,
+    getDefaultValue: () => false,
     description: "全てのエレメントのコードを表示します");
 
 // Add the options to a root command:
