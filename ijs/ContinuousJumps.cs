@@ -20,7 +20,7 @@ public class ContinuousJumps : IElement {
 
     public string Name => string.Join("+", jumps.Select(x => x.Name));
     public string FullCode => string.Join("+", jumps.Select(x => x.FullCode));
-    public float BaseValue => jumps
+    public double BaseValue => jumps
         .Select(x => x.BaseValue)
         .Sum();
     public ElementType ElementType => ElementType.Jump;

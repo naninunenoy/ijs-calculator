@@ -3,9 +3,9 @@
 namespace ijs_cli; 
 
 public readonly struct TotalBaseValue {
-    readonly decimal value;
-    public TotalBaseValue(float value) {
-        this.value = Math.Round((decimal)value, 3);
+    readonly double value;
+    public TotalBaseValue(double value) {
+        this.value = Math.Round(value, 3);
     }
 
     public override string ToString() {

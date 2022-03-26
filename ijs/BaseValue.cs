@@ -6,8 +6,8 @@ namespace ijs;
 /// 基礎点
 /// </summary>
 public readonly struct BaseValue {
-    public readonly float value;
-    public BaseValue(float value) {
+    public readonly double value;
+    public BaseValue(double value) {
         this.value = value;
     }
 

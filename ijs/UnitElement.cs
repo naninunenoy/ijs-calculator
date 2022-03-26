@@ -36,7 +36,7 @@ public class UnitElement : IElement {
     }
     
     string IElement.FullCode => Id.Code.ToEnumString();
-    float IElement.BaseValue => BaseValue.value;
+    double IElement.BaseValue => BaseValue.value;
     string IElement.Name => Name.jpn;
     ElementType IElement.ElementType => Type.ElementType;
 }

@@ -12,7 +12,7 @@ public class ElementList {
         list = elements.ToList();
     }
 
-    public float TotalBaseValue() => list.Select(x => x.BaseValue).Sum();
+    public double TotalBaseValue() => list.Select(x => x.BaseValue).Sum();
     public int TotalCount() => list.Count;
     public int SecondHalfCount() => list.Count(x => x is SecondHalfElement);
     public int JumpCount() => list.Count(x => x.ElementType is ElementType.Jump);
