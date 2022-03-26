@@ -4,7 +4,7 @@ using Xunit;
 
 namespace ijs_test; 
 
-public class ElementsListTest {
+public class ElementListTest {
     readonly IElement jump = new TestElement("ジャンプ", "Jump", ElementType.Jump, 1F);
     readonly IElement spin = new TestElement("スピン", "Spin", ElementType.Spin, 10F);
     readonly IElement stepSequence = new TestElement("ステップシーケンス", "StepSequence", ElementType.StepSequence, 100F);

@@ -3,7 +3,7 @@ using Xunit;
 
 namespace ijs_test; 
 
-public class ElementsNameTest {
+public class ElementNameTest {
     [Fact]
     public void ToStringTest() {
         var name = new ElementName("1回転トウループ");

@@ -3,7 +3,7 @@ using Xunit;
 
 namespace ijs_test; 
 
-public class ElementsLevelTest {
+public class ElementLevelTest {
     [Fact]
     public void ToEnumStringTest() {
         Assert.Equal("B", ElementLevel.LvB.ToEnumString());

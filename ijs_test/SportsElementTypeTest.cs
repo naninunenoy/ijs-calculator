@@ -3,7 +3,7 @@ using Xunit;
 
 namespace ijs_test; 
 
-public class SportsElementsTypeTest {
+public class SportsElementTypeTest {
     [Fact]
     public void ToStringTest() {
         var type = new SportsElementType(SportsType.Single, ElementType.Jump);

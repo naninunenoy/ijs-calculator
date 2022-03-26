@@ -4,7 +4,7 @@ using Xunit;
 
 namespace ijs_test;
 
-public class ElementsIdTableTest {
+public class ElementIdTableTest {
     [Fact]
     public void SingleJumpElementsIdsTest() {
         var ids = ElementIdTable.SingleJumpElementsIds();

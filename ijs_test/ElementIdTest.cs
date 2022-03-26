@@ -3,7 +3,7 @@ using Xunit;
 
 namespace ijs_test; 
 
-public class ElementsIdTest {
+public class ElementIdTest {
     [Fact]
     public void ToStringTest() {
         var id = new ElementId(ElementCode._1T, ElementLevel.Lv1);
