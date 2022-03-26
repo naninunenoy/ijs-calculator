@@ -9,43 +9,36 @@ public static class ElementTable {
     public static IEnumerable<UnitElement> IceDanceElementsList => IceDanceElementsDict.Values;
     
     static ElementTable() {
-        SingleElementsDict = ElementTypeList.Single()
-            .Select(x => (x, ConcatIds(
-                ElementIdTable.SingleJumpElementsIds(),
-                ElementIdTable.SingleSpinElementsIds(),
-                ElementIdTable.SingleStepSequenceElementsIds())))
-            .SelectMany(ToElements)
+        SingleElementsDict = ConcatUnitElements(
+                ToElements(ElementTypeList.SingleJump, ElementIdTable.SingleJumpElementsIds()),
+                ToElements(ElementTypeList.SingleSpin, ElementIdTable.SingleSpinElementsIds()),
+                ToElements(ElementTypeList.SingleStepSequence, ElementIdTable.SingleStepSequenceElementsIds()))
             .ToDictionary(x => x.Id);
-        PairElementsDict = ElementTypeList.Pair()
-            .Select(x => (x, ConcatIds(
-                ElementIdTable.PairJumpElementsIds(),
-                ElementIdTable.PairStepSequenceElementsIds(),
-                ElementIdTable.PairLiftElementsIds(),
-                ElementIdTable.PairTwistLiftElementsIds(),
-                ElementIdTable.PairThrowJumpElementsIds(),
-                ElementIdTable.PairDeathSpiralElementsIds(),
-                ElementIdTable.PairSpinElementsIds())))
-            .SelectMany(ToElements)
+        PairElementsDict = ConcatUnitElements(
+                ToElements(ElementTypeList.PairJump, ElementIdTable.PairJumpElementsIds()),
+                ToElements(ElementTypeList.PairStepSequence, ElementIdTable.PairStepSequenceElementsIds()),
+                ToElements(ElementTypeList.PairLift, ElementIdTable.PairLiftElementsIds()),
+                ToElements(ElementTypeList.PairTwistLift, ElementIdTable.PairTwistLiftElementsIds()),
+                ToElements(ElementTypeList.PairThrowJump, ElementIdTable.PairThrowJumpElementsIds()),
+                ToElements(ElementTypeList.PairDeathSpiral, ElementIdTable.PairDeathSpiralElementsIds()),
+                ToElements(ElementTypeList.PairSpin, ElementIdTable.PairSpinElementsIds()))
             .ToDictionary(x => x.Id);
-        IceDanceElementsDict = ElementTypeList.IceDance()
-            .Select(x => (x, ConcatIds(
-                ElementIdTable.IceDancePatternDanceElementsIds(),
-                ElementIdTable.IceDanceSpinElementsIds(),
-                ElementIdTable.IceDanceLiftElementsIds(),
-                ElementIdTable.IceDanceTwizzleElementsIds(),
-                ElementIdTable.IceDanceStepSequenceElementsIds(),
-                ElementIdTable.IceDanceChoreographicElementsIds())))
-            .SelectMany(ToElements)
+        IceDanceElementsDict = ConcatUnitElements(
+                ToElements(ElementTypeList.IceDancePatternDance, ElementIdTable.IceDancePatternDanceElementsIds()),
+                ToElements(ElementTypeList.IceDanceSpin, ElementIdTable.IceDanceSpinElementsIds()),
+                ToElements(ElementTypeList.IceDanceLift, ElementIdTable.IceDanceLiftElementsIds()),
+                ToElements(ElementTypeList.IceDanceTwizzle, ElementIdTable.IceDanceTwizzleElementsIds()),
+                ToElements(ElementTypeList.IceDanceStepSequence, ElementIdTable.IceDanceStepSequenceElementsIds()),
+                ToElements(ElementTypeList.IceDanceChoreographicElement, ElementIdTable.IceDanceChoreographicElementsIds()))
             .ToDictionary(x => x.Id);
     }
     
-    static IEnumerable<ElementId> ConcatIds(params IEnumerable<ElementId>[] ids) {
-        return ids.Aggregate(Enumerable.Empty<ElementId>(), (total, x) => total.Concat(x));
+    static IEnumerable<UnitElement> ConcatUnitElements(params IEnumerable<UnitElement>[] unitElements) {
+        return unitElements.Aggregate(Enumerable.Empty<UnitElement>(), (total, x) => total.Concat(x));
     }
-    
-    static IEnumerable<UnitElement> ToElements((SportsElementType elementType, IEnumerable<ElementId> elementsIds) tuple) {
-        var (type, ids) = tuple;
-        return ids.Select(id => new UnitElement(
-            type, id, ElementName.FromElementsId(id), BaseValue.FromElementsId(id)));
+
+    static IEnumerable<UnitElement> ToElements(SportsElementType sportsElementType, IEnumerable<ElementId> elementIds) {
+        return elementIds.Select(id => new UnitElement(
+            sportsElementType, id, ElementName.FromElementsId(id), BaseValue.FromElementsId(id)));
     }
 }
