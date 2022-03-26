@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Text;
+using EastAsianWidthDotNet;
 using ijs;
-using Microsoft.VisualBasic;
 
 namespace ijs_cli;
 
@@ -44,11 +44,11 @@ public class ElementListExtractor {
             this.content = content;
         }
         public int GetHeaderLength() {
-            return Encoding.Unicode.GetBytes(header).Length;
+            return header.GetWidth(true);
         }
+
         public string ToString(int spaceNum) {
-            var tabNum = spaceNum < tabLength ? 1 : spaceNum / tabLength + 1;
-            return $"{header}{new string('\t', tabNum)}{content}";
+            return $"{header}{new string(' ', spaceNum + 1)}{content}";
         }
     }
 }
