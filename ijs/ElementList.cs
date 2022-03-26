@@ -13,6 +13,8 @@ public class ElementList {
     }
 
     public float TotalBaseValue() => list.Select(x => x.BaseValue).Sum();
+    public int TotalCount() => list.Count;
+    public int SecondHalfCount() => list.Count(x => x is SecondHalfElement);
     public int JumpCount() => list.Count(x => x.ElementType is ElementType.Jump);
     public int SpinCount() => list.Count(x => x.ElementType is ElementType.Spin);
     public int StepSequenceCount() => list.Count(x => x.ElementType is ElementType.StepSequence);

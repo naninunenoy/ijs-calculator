@@ -35,6 +35,22 @@ public class ElementListTest {
     }
 
     [Fact]
+    public void TotalCountTest() {
+        var list = new ElementList();
+        list.Build(jump, spin, stepSequence, lift, twistLift, throwJump, deathSpiral, patternDance, twizzle,
+            choreographicElement);
+        Assert.Equal(10, list.TotalCount());
+    }
+    
+    [Fact]
+    public void SecondHalfCountTest() {
+        var list = new ElementList();
+        var secondHalfJump = new SecondHalfElement(jump);
+        list.Build(jump, secondHalfJump);
+        Assert.Equal(1, list.SecondHalfCount());
+    }
+    
+    [Fact]
     public void TotalBaseValueTest() {
         var list = new ElementList();
         list.Build(jump, spin, stepSequence, lift, twistLift, throwJump, deathSpiral, patternDance, twizzle,
