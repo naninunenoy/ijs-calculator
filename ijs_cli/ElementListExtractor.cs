@@ -14,7 +14,8 @@ public class ElementListExtractor {
 
     public string Extract() {
         var lines = elementList.List
-            .Select((x, i) => new Line(i + 1, x.Name, x.FullCode, x.BaseValue,
+            .Select((x, i) => new Line(i + 1, x.Name, x.FullCode, 
+                 x is UnknownElement ? "????" : x.BaseValue.ToString("F2", CultureInfo.InvariantCulture),
                 x is SecondHalfElement ? $"後半につき{SecondHalfElement.Magnification:F1}倍加点" : ""))
             .ToArray();
         
@@ -34,10 +35,10 @@ public class ElementListExtractor {
         readonly int no;
         readonly string name;
         readonly string code;
-        readonly double score;
+        readonly string score;
         readonly string supplement;
 
-        public Line(int no, string name, string code, double score, string supplement) {
+        public Line(int no, string name, string code, string score, string supplement) {
             this.no = no;
             this.name = name;
             this.code = code;
@@ -52,7 +53,7 @@ public class ElementListExtractor {
 
         public string ToLineString(int spaceNumBetweenNameAndCode) {
             return $"{no,2}. {name}{new string(' ', spaceNumBetweenNameAndCode)}({code})" +
-                   $": {score.ToString("F2", CultureInfo.InvariantCulture),5} {supplement}";
+                   $": {score,5} {supplement}";
         }
     }
 }

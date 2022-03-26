@@ -9,6 +9,9 @@ public class ContinuousJumps : IElement {
     }
 
     public void Build(params IElement[] jumpElements) {
+        if (jumpElements.Length < 1) {
+            throw new ArgumentException("ジャンプの数が足りていません");
+        }
         if (jumpElements.Any(x => x.ElementType is not ElementType.Jump)) {
             throw new ArgumentException("ジャンプでないエレメンツが含まれています");
         }

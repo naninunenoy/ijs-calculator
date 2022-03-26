@@ -21,26 +21,29 @@ public class ProgramParser {
                 foreach (var jump in jumps) {
                     if (lowerCodeDict.TryGetValue(jump.LowerInvariantCode(), out var unitElement)) {
                         if (((IElement)unitElement).ElementType != ElementType.Jump) {
-                            throw new ArgumentException($"連続ジャンプにジャンプでない項目がふくまれています {jump.RawCode()}");
+                            Console.WriteLine($"<!> 連続ジャンプにジャンプでない項目がふくまれています {jump.RawCode()}");
+                            continue;
                         }
                         jumpElements.Add(unitElement);
                     } else {
-                        throw new ArgumentException($"指定した競技に含まれない項目があります {jump.RawCode()}");
+                        Console.WriteLine($"<!> 指定した競技に含まれない項目があります {jump.RawCode()}");
                     }
                 }
 
                 var continuousJumps = new ContinuousJumps();
                 try {
                     continuousJumps.Build(jumpElements.Cast<IElement>().ToArray());
+                    element = continuousJumps;
                 } catch (Exception e) {
-                    throw new ArgumentException($"連続ジャンプの項目が生成できませんでした {code.RawCode()} {e.Message}");
+                    Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {e.Message} {code.RawCode()}");
+                    element = new UnknownElement(code.RawCode());
                 }
-                element = continuousJumps;
             } else {
                 if (lowerCodeDict.TryGetValue(code.LowerInvariantCode(), out var unitElement)) {
                     element = unitElement;
                 } else {
-                    throw new ArgumentException($"指定した競技に含まれない項目があります {code.RawCode()}");
+                    Console.WriteLine($"<!> 指定した競技に含まれない項目があります {code.RawCode()}");
+                    element = new UnknownElement(code.RawCode());
                 }
             }
 
