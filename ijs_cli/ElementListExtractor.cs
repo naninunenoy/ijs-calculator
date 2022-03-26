@@ -16,7 +16,7 @@ public class ElementListExtractor {
         var lineNumber = 1;
         var lines = new List<Line>();
         foreach (var x in elementList.List) {
-            var header = $"{lineNumber++}. {x.Name}({x.FullCode}):";
+            var header = $"{lineNumber++,3}. {x.Name}({x.FullCode}):";
             var content = x.BaseValue.ToString("F2", CultureInfo.InvariantCulture);
             if (x is SecondHalfElement) {
                 content += $" ※後半につき{SecondHalfElement.Magnification:F1}倍加点";
@@ -26,29 +26,29 @@ public class ElementListExtractor {
 
         var maxHeaderLength = lines.Max(x => x.GetHeaderLength());
         var stringBuilder = new StringBuilder();
-        stringBuilder.AppendLine("=================== 内訳 ===================");
+        stringBuilder.AppendLine("==== 内訳 ===============================================================");
         foreach (var line in lines) {
             var spaceNum = maxHeaderLength - line.GetHeaderLength();
             stringBuilder.AppendLine(line.ToString(spaceNum));
         }
-        stringBuilder.AppendLine("===========================================");
+        stringBuilder.AppendLine("=========================================================================");
         return stringBuilder.ToString();
     }
 
     readonly struct Line {
-        const int TabLength = 8;
-        public readonly string Header;
-        public readonly string Content;
+        const int tabLength = 8;
+        readonly string header;
+        readonly string content;
         public Line(string header, string content) {
-            Header = header;
-            Content = content;
+            this.header = header;
+            this.content = content;
         }
         public int GetHeaderLength() {
-            return Encoding.Unicode.GetBytes(Header).Length;
+            return Encoding.Unicode.GetBytes(header).Length;
         }
         public string ToString(int spaceNum) {
-            var tabNum = spaceNum / TabLength;
-            return $"{Header}{new string('\t', tabNum < 1 ? 1 : tabNum)}{Content}";
+            var tabNum = spaceNum < tabLength ? 1 : spaceNum / tabLength + 1;
+            return $"{header}{new string('\t', tabNum)}{content}";
         }
     }
 }

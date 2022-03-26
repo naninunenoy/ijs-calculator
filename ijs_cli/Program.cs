@@ -51,7 +51,7 @@ rootCommand.SetHandler((string programArgs, string sportType) =>
         description = e.Message;
     }
 
-    Console.WriteLine(success ? $"基礎点合計は{totalBaseValue}です" : "基礎点の計算に失敗しました");
+    Console.WriteLine(success ? $"基礎点合計は {totalBaseValue} です" : "基礎点の計算に失敗しました");
     Console.WriteLine(description);
 }, programOption, sportsOption);
 
