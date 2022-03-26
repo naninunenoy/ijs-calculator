@@ -14,7 +14,7 @@ public class ElementIdTableTest {
     [Fact]
     public void SingleSpinElementsIdsTest() {
         var ids = ElementIdTable.SingleSpinElementsIds();
-        Assert.Equal(14*5, ids.Count());
+        Assert.Equal(20*5, ids.Count());
     }
 
     [Fact]
