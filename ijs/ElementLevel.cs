@@ -3,7 +3,7 @@
 /// <summary>
 /// エレメンツのレベル
 /// </summary>
-public enum ElementsLevel {
+public enum ElementLevel {
     /// <summary>
     /// NON(レベル無し)
     /// </summary>
@@ -31,13 +31,13 @@ public enum ElementsLevel {
 }
 
 internal static partial class ElementExtension {
-    public static string ToEnumString(this ElementsLevel elementsLevel) {
-        return elementsLevel switch {
-            ElementsLevel.LvB => "B",
-            ElementsLevel.Lv1 => "1",
-            ElementsLevel.Lv2 => "2",
-            ElementsLevel.Lv3 => "3",
-            ElementsLevel.Lv4 => "4",
+    public static string ToEnumString(this ElementLevel elementLevel) {
+        return elementLevel switch {
+            ElementLevel.LvB => "B",
+            ElementLevel.Lv1 => "1",
+            ElementLevel.Lv2 => "2",
+            ElementLevel.Lv3 => "3",
+            ElementLevel.Lv4 => "4",
             _ => ""
         };
     }

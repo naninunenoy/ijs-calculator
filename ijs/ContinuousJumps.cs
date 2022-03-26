@@ -1,15 +1,15 @@
 ﻿namespace ijs;
 
-public class ContinuousJumps : IElements {
+public class ContinuousJumps : IElement {
     const int maxJumpCount = 3;
-    public IReadOnlyList<IElements> Jumps => jumps;
-    List<IElements> jumps;
+    public IReadOnlyList<IElement> Jumps => jumps;
+    List<IElement> jumps;
     public ContinuousJumps() {
-        jumps = new List<IElements>();
+        jumps = new List<IElement>();
     }
 
-    public void Build(params IElements[] jumpElements) {
-        if (jumpElements.Any(x => x.ElementsType is not ElementsType.Jump)) {
+    public void Build(params IElement[] jumpElements) {
+        if (jumpElements.Any(x => x.ElementType is not ElementType.Jump)) {
             throw new ArgumentException("ジャンプでないエレメンツが含まれています");
         }
         if (jumpElements.Length > maxJumpCount) {
@@ -23,9 +23,9 @@ public class ContinuousJumps : IElements {
     public float BaseValue => jumps
         .Select(x => x.BaseValue)
         .Sum();
-    public ElementsType ElementsType => ElementsType.Jump;
+    public ElementType ElementType => ElementType.Jump;
 
-    public bool Equals(IElements? other) {
+    public bool Equals(IElement? other) {
         // code(1AとかFCSp4とか)で同一エレメントかを判定
         var mine = FullCode;
         var his = other?.FullCode.ToLowerInvariant() ?? "";
@@ -36,7 +36,7 @@ public class ContinuousJumps : IElements {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((IElements)obj);
+        return Equals((IElement)obj);
     }
 
     public override int GetHashCode() {

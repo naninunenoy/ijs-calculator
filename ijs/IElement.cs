@@ -1,8 +1,8 @@
 ﻿namespace ijs; 
 
-public interface IElements : IEquatable<IElements> {
+public interface IElement : IEquatable<IElement> {
     string Name { get; }
     string FullCode { get; }
-    ElementsType ElementsType { get; }
+    ElementType ElementType { get; }
     float BaseValue { get; }
 }

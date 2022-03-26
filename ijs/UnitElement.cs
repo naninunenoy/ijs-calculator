@@ -1,12 +1,12 @@
 ﻿namespace ijs; 
 
-public class UnitElements : IElements {
-    SportsElementsType Type { get; }
-    public ElementsId Id { get; }
-    public ElementsName Name { get; }
+public class UnitElement : IElement {
+    SportsElementType Type { get; }
+    public ElementId Id { get; }
+    public ElementName Name { get; }
     public BaseValue BaseValue { get; }
     
-    internal UnitElements(SportsElementsType type, ElementsId id, ElementsName name, BaseValue baseValue) {
+    internal UnitElement(SportsElementType type, ElementId id, ElementName name, BaseValue baseValue) {
         Type = type;
         Id = id;
         Name = name;
@@ -17,7 +17,7 @@ public class UnitElements : IElements {
         return $"Type={Type},Id={Id},Name={Name},BaseValue={BaseValue.value}";
     }
 
-    public bool Equals(IElements? other) {
+    public bool Equals(IElement? other) {
         // code(1AとかFCSp4とか)で同一エレメントかを判定
         var mine = Id.ToString().ToLowerInvariant();
         var his = other?.FullCode.ToLowerInvariant() ?? "";
@@ -28,15 +28,15 @@ public class UnitElements : IElements {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((IElements)obj);
+        return Equals((IElement)obj);
     }
 
     public override int GetHashCode() {
         return Id.GetHashCode();
     }
     
-    string IElements.FullCode => Id.Code.ToEnumString();
-    float IElements.BaseValue => BaseValue.value;
-    string IElements.Name => Name.jpn;
-    ElementsType IElements.ElementsType => Type.ElementsType;
+    string IElement.FullCode => Id.Code.ToEnumString();
+    float IElement.BaseValue => BaseValue.value;
+    string IElement.Name => Name.jpn;
+    ElementType IElement.ElementType => Type.ElementType;
 }

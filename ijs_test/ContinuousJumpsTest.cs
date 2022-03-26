@@ -6,11 +6,11 @@ using Xunit;
 namespace ijs_test;
 
 public class ContinuousJumpsTest {
-    readonly IElements jump0 = new TestElements("ジャンプ0", "Jump0", ElementsType.Jump, 1F);
-    readonly IElements jump1 = new TestElements("ジャンプ1", "Jump1", ElementsType.Jump, 10F);
-    readonly IElements jump2 = new TestElements("ジャンプ2", "Jump2", ElementsType.Jump, 100F);
-    readonly IElements jump3 = new TestElements("ジャンプ3", "Jump3", ElementsType.Jump, 1000F);
-    readonly IElements spin = new TestElements("スピン", "Spin", ElementsType.Spin, 1F);
+    readonly IElement jump0 = new TestElement("ジャンプ0", "Jump0", ElementType.Jump, 1F);
+    readonly IElement jump1 = new TestElement("ジャンプ1", "Jump1", ElementType.Jump, 10F);
+    readonly IElement jump2 = new TestElement("ジャンプ2", "Jump2", ElementType.Jump, 100F);
+    readonly IElement jump3 = new TestElement("ジャンプ3", "Jump3", ElementType.Jump, 1000F);
+    readonly IElement spin = new TestElement("スピン", "Spin", ElementType.Spin, 1F);
 
     [Fact]
     public void BuildTest_ジャンプでないエレメンツが含まれています() {
@@ -32,7 +32,7 @@ public class ContinuousJumpsTest {
         Assert.Equal("", emptyJumps.Name);
         Assert.Equal("", emptyJumps.FullCode);
         Assert.Equal(0F, emptyJumps.BaseValue);
-        Assert.Equal(ElementsType.Jump, emptyJumps.ElementsType);
+        Assert.Equal(ElementType.Jump, emptyJumps.ElementType);
     }
     
     [Fact]
@@ -42,6 +42,6 @@ public class ContinuousJumpsTest {
         Assert.Equal("ジャンプ0+ジャンプ1+ジャンプ2", jumps.Name);
         Assert.Equal("Jump0+Jump1+Jump2", jumps.FullCode);
         Assert.Equal(111F, jumps.BaseValue);
-        Assert.Equal(ElementsType.Jump, jumps.ElementsType);
+        Assert.Equal(ElementType.Jump, jumps.ElementType);
     }
 }

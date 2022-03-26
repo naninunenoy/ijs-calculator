@@ -3,7 +3,7 @@
 /// <summary>
 /// エレメンツの種別
 /// </summary>
-public enum ElementsType {
+public enum ElementType {
     /// <summary>
     /// ジャンプ
     /// </summary>

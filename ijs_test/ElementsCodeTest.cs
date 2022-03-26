@@ -6,6 +6,6 @@ namespace ijs_test;
 public class ElementsCodeTest {
     [Fact]
     public void ToEnumStringTest() {
-        Assert.Equal("1T", ElementsCode._1T.ToEnumString());
+        Assert.Equal("1T", ElementCode._1T.ToEnumString());
     }
 }

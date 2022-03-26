@@ -4,21 +4,21 @@
 /// エレメンツを一意に決定できる情報
 /// 記号とレベルからなる
 /// </summary>
-public readonly struct ElementsId : IEquatable<ElementsId> {
-    public readonly ElementsCode Code;
-    public readonly ElementsLevel Level;
+public readonly struct ElementId : IEquatable<ElementId> {
+    public readonly ElementCode Code;
+    public readonly ElementLevel Level;
 
-    public ElementsId(ElementsCode code, ElementsLevel level = ElementsLevel.None) {
+    public ElementId(ElementCode code, ElementLevel level = ElementLevel.None) {
         Code = code;
         Level = level;
     }
 
-    public bool Equals(ElementsId other) {
+    public bool Equals(ElementId other) {
         return Code == other.Code && Level == other.Level;
     }
 
     public override bool Equals(object? obj) {
-        return obj is ElementsId other && Equals(other);
+        return obj is ElementId other && Equals(other);
     }
 
     public override int GetHashCode() {
@@ -29,11 +29,11 @@ public readonly struct ElementsId : IEquatable<ElementsId> {
         return $"{Code.ToEnumString()}{Level.ToEnumString()}";
     }
 
-    public static bool operator ==(ElementsId left, ElementsId right) {
+    public static bool operator ==(ElementId left, ElementId right) {
         return left.Equals(right);
     }
 
-    public static bool operator !=(ElementsId left, ElementsId right) {
+    public static bool operator !=(ElementId left, ElementId right) {
         return !(left == right);
     }
 }

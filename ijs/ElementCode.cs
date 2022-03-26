@@ -7,7 +7,7 @@
 /// 言語使用で数字を先頭にできないので
 /// 共通して `_` を先頭に置いている
 /// </remarks>
-public enum ElementsCode {
+public enum ElementCode {
     // ジャンプ(シングル・ペア)
     _1T,
     _1S,
@@ -129,7 +129,7 @@ public enum ElementsCode {
 }
 
 internal static partial class ElementExtension {
-    public static string ToEnumString(this ElementsCode elementsCode) {
-        return elementsCode.ToString().TrimStart('_');
+    public static string ToEnumString(this ElementCode elementCode) {
+        return elementCode.ToString().TrimStart('_');
     }
 }

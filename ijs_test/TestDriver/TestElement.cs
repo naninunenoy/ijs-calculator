@@ -3,23 +3,23 @@ using ijs;
 
 namespace ijs_test.TestDriver;
 
-public class TestElements : IElements {
+public class TestElement : IElement {
     public string Name { get; }
     public string FullCode { get; }
-    public ElementsType ElementsType { get; }
+    public ElementType ElementType { get; }
     public float BaseValue { get; }
 
-    public TestElements(string name, string fullCode, ElementsType elementsType, float baseValue) {
+    public TestElement(string name, string fullCode, ElementType elementType, float baseValue) {
         Name = name;
         FullCode = fullCode;
-        ElementsType = elementsType;
+        ElementType = elementType;
         BaseValue = baseValue;
     }
 
-    public bool Equals(IElements? other) {
+    public bool Equals(IElement? other) {
         return Name == other?.Name && 
                FullCode == other.FullCode && 
-               ElementsType == other.ElementsType &&
+               ElementType == other.ElementType &&
                BaseValue.Equals(other.BaseValue);
     }
 
@@ -27,10 +27,10 @@ public class TestElements : IElements {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((IElements)obj);
+        return Equals((IElement)obj);
     }
 
     public override int GetHashCode() {
-        return HashCode.Combine(Name, FullCode, (int)ElementsType, BaseValue);
+        return HashCode.Combine(Name, FullCode, (int)ElementType, BaseValue);
     }
 }
