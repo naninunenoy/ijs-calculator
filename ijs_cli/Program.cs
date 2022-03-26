@@ -1,4 +1,5 @@
 ﻿using System.CommandLine;
+using ijs_cli;
 
 // $ dotnet run -- --program 4S-4T+3T-CCSp4-3Ax-FSSp4-StSq3-CCoSp4
 // エレメントは `-` で区切る
@@ -38,7 +39,24 @@ rootCommand.SetHandler((string programArgs, string sportType) =>
         Console.WriteLine(programDescription);
         return;
     }
-    // TODO
+
+    var calc = new TotalBaseValueCalculator(sportType, programArgs);
+    var success = false;
+    TotalBaseValue totalBaseValue = default;
+    string description;
+    try {
+        (totalBaseValue, description) = calc.Calculate();
+        success = true;
+    } catch (Exception e) {
+        description = e.Message;
+    }
+
+    if (success) {
+        Console.WriteLine($"基礎点は{totalBaseValue}です");
+    } else {
+        Console.WriteLine("基礎点の計算に失敗しました");
+    }
+    Console.WriteLine(description);
 }, programOption, sportsOption);
 
 // Parse the incoming args and invoke the handler
