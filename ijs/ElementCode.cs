@@ -43,11 +43,17 @@ public enum ElementCode {
     FLSp,
     FCSp,
     FSSp,
+    CUSp,
     FCUSp,
+    CLSp,
     FCLSp,
+    CCSp,
     FCCSp,
+    CSSp,
     FCSSp,
+    CoSp,
     FCoSp,
+    CCoSp,
     FCCoSp,
     // ステップシークエンス(シングル・ペア)
     StSq,
@@ -106,7 +112,7 @@ public enum ElementCode {
     _1MN,
     // スピン(アイスダンス)
     Sp,
-    CoSp,
+    _CoSp, // シングルのコンビネーションスピンと区別するために先頭に `_` をつける(苦肉の策)
     // リフト(アイスダンス)
     StaLi,
     SlLi,

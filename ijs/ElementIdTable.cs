@@ -89,7 +89,7 @@ internal static class ElementIdTable {
     
     public static IEnumerable<ElementId> IceDanceSpinElementsIds() {
         return AllCode
-            .Where(code => code is >= ElementCode.Sp and <= ElementCode.CoSp)
+            .Where(code => code is >= ElementCode.Sp and <= ElementCode._CoSp)
             .Select(code => (code, AllLevel.Where(lv => lv is not ElementLevel.LvB)))
             .SelectMany(ToLevelElementIds);
     }
