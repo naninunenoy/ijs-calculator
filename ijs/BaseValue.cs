@@ -112,7 +112,7 @@ public readonly struct BaseValue {
             ElementCode.CCoSp or ElementCode.FCCoSp when lv is ElementLevel.Lv1 => 2.0,
             ElementCode.CCoSp or ElementCode.FCCoSp when lv is ElementLevel.Lv2 => 2.5,
             ElementCode.CCoSp or ElementCode.FCCoSp when lv is ElementLevel.Lv3 => 3.0,
-            ElementCode.CCoSp or ElementCode.FCCoSp when lv is ElementLevel.Lv4 => 3.2,
+            ElementCode.CCoSp or ElementCode.FCCoSp when lv is ElementLevel.Lv4 => 3.5,
             ElementCode.StSq when lv is ElementLevel.LvB => 1.5,
             ElementCode.StSq when lv is ElementLevel.Lv1 => 1.8,
             ElementCode.StSq when lv is ElementLevel.Lv2 => 2.6,

@@ -35,7 +35,7 @@ public class UnitElement : IElement {
         return Id.GetHashCode();
     }
     
-    string IElement.FullCode => Id.Code.ToEnumString();
+    string IElement.FullCode => Id.ToString();
     double IElement.BaseValue => BaseValue.value;
     string IElement.Name => Name.jpn;
     ElementType IElement.ElementType => Type.ElementType;
