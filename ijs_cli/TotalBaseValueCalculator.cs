@@ -12,16 +12,15 @@ public class TotalBaseValueCalculator {
     }
 
     public (TotalBaseValue totalBaseValue, string description) Calculate() {
-        var description = "";
         var allElements = sportsType.ToLowerInvariant() switch {
-            "single" => ElementTable.SingleElementsDict,
-            "pair" => ElementTable.PairElementsDict,
-            "icedance" => ElementTable.IceDanceElementsDict,
+            "single" => ElementTable.SingleElementsList,
+            "pair" => ElementTable.PairElementsList,
+            "icedance" => ElementTable.IceDanceElementsList,
             _ => throw new ArgumentException(
                 $"種目の指定が正しくありません={sportsType} 有効なのは single/pair/icedance のいずれか1つです")
         };
         ElementList elementList;
-        var parser = new ProgramParser(allElements);
+        var parser = new ProgramParser(allElements.ToArray());
         try {
             elementList = parser.Parse(programRawArg);
         } catch (Exception e) {
