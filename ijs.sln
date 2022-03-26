@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ijs", "ijs\ijs.csproj", "{9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ijs_test", "ijs_test\ijs_test.csproj", "{2D1777B5-AD5E-491B-82C8-9FF136C54D26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ijs_cli", "ijs_cli\ijs_cli.csproj", "{205D7C9C-57BD-4063-8235-0158F63BD661}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{2D1777B5-AD5E-491B-82C8-9FF136C54D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D1777B5-AD5E-491B-82C8-9FF136C54D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D1777B5-AD5E-491B-82C8-9FF136C54D26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{205D7C9C-57BD-4063-8235-0158F63BD661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205D7C9C-57BD-4063-8235-0158F63BD661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205D7C9C-57BD-4063-8235-0158F63BD661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205D7C9C-57BD-4063-8235-0158F63BD661}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
