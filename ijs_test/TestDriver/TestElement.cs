@@ -9,7 +9,7 @@ public class TestElement : IElement {
     public ElementType ElementType { get; }
     public double BaseValue { get; }
 
-    public TestElement(string name, string fullCode, ElementType elementType, float baseValue) {
+    public TestElement(string name, string fullCode, ElementType elementType, double baseValue) {
         Name = name;
         FullCode = fullCode;
         ElementType = elementType;

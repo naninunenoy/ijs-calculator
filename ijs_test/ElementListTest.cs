@@ -5,7 +5,7 @@ using Xunit;
 namespace ijs_test; 
 
 public class ElementListTest {
-    readonly IElement jump = new TestElement("ジャンプ", "Jump", ElementType.Jump, 1F);
+    readonly IElement jump = new TestElement("ジャンプ", "Jump", ElementType.Jump, 1);
     readonly IElement spin = new TestElement("スピン", "Spin", ElementType.Spin, 10F);
     readonly IElement stepSequence = new TestElement("ステップシーケンス", "StepSequence", ElementType.StepSequence, 100F);
     readonly IElement lift = new TestElement("リフト", "Lift", ElementType.Lift, 1000F);
@@ -55,7 +55,7 @@ public class ElementListTest {
         var list = new ElementList();
         list.Build(jump, spin, stepSequence, lift, twistLift, throwJump, deathSpiral, patternDance, twizzle,
             choreographicElement);
-        Assert.Equal(1111111111F, list.TotalBaseValue());
+        Assert.Equal(1111111111, list.TotalBaseValue());
     }
 
     [Fact]
