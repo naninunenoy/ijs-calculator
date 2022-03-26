@@ -18,13 +18,15 @@ public class ElementListExtractor {
                 x is SecondHalfElement ? $"後半につき{SecondHalfElement.Magnification:F1}倍加点" : ""))
             .ToArray();
         
-        var maxWidth = lines.Max(x => x.GetWidth());
+        var maxWidth = lines.Max(x => x.GetTotalWidth());
+        var maxNameWidth = lines.Max(x => x.GetNameAndCodeWidth());
         var stringBuilder = new StringBuilder();
-        stringBuilder.AppendLine("==== 内訳 ===============================================================");
+        const string header = "==== 内訳 ";
+        stringBuilder.AppendLine($"{header}{new string('=', maxWidth - header.GetWidth(true))}");
         foreach (var line in lines) {
-            stringBuilder.AppendLine(line.ToLineString(maxWidth - line.GetWidth()));
+            stringBuilder.AppendLine(line.ToLineString(maxNameWidth - line.GetNameAndCodeWidth()));
         }
-        stringBuilder.AppendLine("=========================================================================");
+        stringBuilder.AppendLine(new string('=', maxWidth));
         return stringBuilder.ToString();
     }
 
@@ -43,7 +45,10 @@ public class ElementListExtractor {
             this.supplement = supplement;
         }
 
-        public int GetWidth() =>  name.GetWidth(true) + code.GetWidth(false);
+        public int GetNameAndCodeWidth() =>  name.GetWidth(true) + code.GetWidth(false);
+
+        public int GetTotalWidth() => name.GetWidth(true) + code.GetWidth(false) +
+                                      2 + ". ".Length + "()".Length + ": ".Length + 5;
 
         public string ToLineString(int spaceNumBetweenNameAndCode) {
             return $"{no,2}. {name}{new string(' ', spaceNumBetweenNameAndCode)}({code})" +
