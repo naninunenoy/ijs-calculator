@@ -23,6 +23,10 @@ public class TotalBaseValueCalculator {
         var elementList = parser.Parse(programRawArg);
 
         var extractor = new ElementListExtractor(elementList);
+        // 全て不明の場合のみ失敗表示にする
+        if (elementList.List.All(x => x is UnknownElement)) {
+            throw new ArgumentException($"得点を計算可能なエレメントがありませんでした\n{extractor.Extract()}");
+        }
         return (new TotalBaseValue(elementList.TotalBaseValue()), extractor.Extract());
     }
 }
