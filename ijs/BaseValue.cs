@@ -16,6 +16,8 @@ public readonly struct BaseValue {
     }
 
     public static BaseValue FromElementsId(ElementId elementId) {
+        return new BaseValue(0);//TODO
+        /*
         var lv = elementId.Level;
         var value = elementId.Code switch {
             ElementCode._1T => 0.4,
@@ -304,5 +306,6 @@ public readonly struct BaseValue {
             _ => throw new ArgumentOutOfRangeException()
         };
         return new BaseValue(value);
+        */
     }
 }

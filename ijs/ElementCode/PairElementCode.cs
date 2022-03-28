@@ -75,6 +75,11 @@ internal enum PairElementCode {
 }
 
 internal static class PairElementCodeExtensions {
+    static readonly PairElementCode[] allEnums = (PairElementCode[])Enum.GetValues(typeof(PairElementCode));
+    public static IEnumerable<PairElementCode> AllEnums() => allEnums;
+    public static IEnumerable<ElementId> WithLevelElementLevel(this PairElementCode code, params ElementLevel[] levels) {
+        return levels.Select(x => new ElementId(code, x));
+    }
     public static bool IsJump(this PairElementCode code) {
         return code is >= PairElementCode._1T and <= PairElementCode._4A;
     }

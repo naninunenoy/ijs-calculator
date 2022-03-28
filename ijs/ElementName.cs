@@ -13,6 +13,8 @@ public readonly struct ElementName {
     }
 
     public static ElementName FromElementsId(ElementId elementId) {
+        return new ElementName("実装中"); // TODO
+        /*
         var lv = $"レベル{elementId.Level.ToEnumString()}";
         return elementId.Code switch {
             ElementCode._1T => new ElementName("1回転トウループ"),
@@ -127,5 +129,6 @@ public readonly struct ElementName {
             ElementCode.ChTw1 => new ElementName("コレオグラフィックツイズリングムーブメント"),
             _ => throw new ArgumentOutOfRangeException(nameof(elementId.Code), elementId.Code, null)
         };
+        */
     }
 }

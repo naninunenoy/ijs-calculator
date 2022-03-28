@@ -52,6 +52,12 @@ internal enum SingleElementCode {
 }
 
 internal static class SingleElementCodeExtensions {
+    static readonly SingleElementCode[] allEnums = (SingleElementCode[])Enum.GetValues(typeof(SingleElementCode));
+    public static IEnumerable<SingleElementCode> AllEnums() => allEnums;
+    public static IEnumerable<ElementId> WithLevelElementLevel(this SingleElementCode code, params ElementLevel[] levels) {
+        return levels.Select(x => new ElementId(code, x));
+    }
+
     public static bool IsJump(this SingleElementCode code) {
         return code is >= SingleElementCode._1T and <= SingleElementCode._4A;
     }

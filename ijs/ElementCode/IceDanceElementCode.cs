@@ -25,6 +25,11 @@ internal enum IceDanceElementCode {
 }
 
 internal static class IceDanceElementsCodeExtensions {
+    static readonly IceDanceElementCode[] allEnums = (IceDanceElementCode[])Enum.GetValues(typeof(IceDanceElementCode));
+    public static IEnumerable<IceDanceElementCode> AllEnums() => allEnums;
+    public static IEnumerable<ElementId> WithLevelElementLevel(this IceDanceElementCode code, params ElementLevel[] levels) {
+        return levels.Select(x => new ElementId(code, x));
+    }
     public static bool IsPatternDance(this IceDanceElementCode code) {
         return code is >= IceDanceElementCode._1BL and <= IceDanceElementCode._1MN;
     }

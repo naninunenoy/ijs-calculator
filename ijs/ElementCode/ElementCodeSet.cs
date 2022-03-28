@@ -5,7 +5,7 @@ public class ElementCodeSet : IEquatable<ElementCodeSet> {
     PairElementCode PairElementCode { get; }
     IceDanceElementCode IceDanceElementCode { get; }
 
-    internal ElementCodeSet() {
+    ElementCodeSet() {
         SingleElementCode = SingleElementCode.Undefined;
         PairElementCode = PairElementCode.Undefined;
         IceDanceElementCode = IceDanceElementCode.Undefined;
