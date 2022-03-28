@@ -1,6 +1,7 @@
 ﻿namespace ijs; 
 
 internal enum SingleElementCode {
+    Undefined,
     _1T,
     _1S,
     _1Lo,
