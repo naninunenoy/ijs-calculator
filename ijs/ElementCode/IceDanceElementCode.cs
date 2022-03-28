@@ -45,7 +45,7 @@ internal static class IceDanceElementsCodeExtensions {
     public static bool IsStepSequence(this IceDanceElementCode code) {
         return code is >= IceDanceElementCode.PSt and <= IceDanceElementCode.NtCiSt;
     }
-    public static bool IsChoreographic(this IceDanceElementCode code) {
+    public static bool IsChoreographicElements(this IceDanceElementCode code) {
         return code is >= IceDanceElementCode.ChLi1 and <= IceDanceElementCode.ChTw1;
     }
 }

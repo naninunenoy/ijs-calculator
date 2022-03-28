@@ -132,7 +132,7 @@ internal static class ElementIdTable {
     public static IEnumerable<ElementId> IceDanceChoreographicElementsIds() {
         return IceDanceElementsCodeExtensions
             .AllEnums()
-            .Where(x => x.IsChoreographic())
+            .Where(x => x.IsChoreographicElements())
             .Select(code => new ElementId(code));
     }
 }
