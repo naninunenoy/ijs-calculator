@@ -14,40 +14,26 @@ public class ProgramParser {
         var programCodes = SplitProgramCodes(programArg);
         // コードを解析
         var programElements = new List<IElement>();
-        foreach (var code in programCodes) {
-            IElement element;
-            if (code.IsContinuousJump(out var jumps) && jumps.Length > 1) {
-                var jumpElements = new List<UnitElement>();
-                foreach (var jump in jumps) {
-                    if (lowerCodeDict.TryGetValue(jump.LowerInvariantCode(), out var unitElement)) {
-                        if (((IElement)unitElement).ElementType != ElementType.Jump) {
-                            Console.WriteLine($"<!> 連続ジャンプにジャンプでない項目がふくまれています {jump.RawCode()}");
-                            continue;
-                        }
-                        jumpElements.Add(unitElement);
-                    } else {
-                        Console.WriteLine($"<!> 指定した競技に含まれない項目があります {jump.RawCode()}");
-                    }
-                }
-
+        foreach (var originalCode in programCodes) {
+            IElement element = new UnknownElement(originalCode.RawCode());
+            if (originalCode.IsContinuousJump(out var jumps) && jumps.Length > 1) {
+                var jumpElements = ToJumpUnitElements(jumps);
                 var continuousJumps = new ContinuousJumps();
                 try {
                     continuousJumps.Build(jumpElements.Cast<IElement>().ToArray());
                     element = continuousJumps;
                 } catch (Exception e) {
-                    Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {e.Message} {code.RawCode()}");
-                    element = new UnknownElement(code.RawCode());
+                    Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {e.Message} {originalCode.RawCode()}");
                 }
             } else {
-                if (lowerCodeDict.TryGetValue(code.LowerInvariantCode(), out var unitElement)) {
+                if (lowerCodeDict.TryGetValue(originalCode.LowerInvariantCode(), out var unitElement)) {
                     element = unitElement;
                 } else {
-                    Console.WriteLine($"<!> 指定した競技に含まれない項目があります {code.RawCode()}");
-                    element = new UnknownElement(code.RawCode());
+                    Console.WriteLine($"<!> 指定した競技に含まれない項目があります {originalCode.RawCode()}");
                 }
             }
 
-            if (code.IsSecondHalf()) {
+            if (originalCode.IsSecondHalf()) {
                 programElements.Add(new SecondHalfElement(element));
             } else {
                 programElements.Add(element);
@@ -61,5 +47,21 @@ public class ProgramParser {
 
     static IEnumerable<ElementCode> SplitProgramCodes(string program) {
         return program.Split("-", StringSplitOptions.RemoveEmptyEntries).Select(x => new ElementCode(x));
+    }
+
+    IEnumerable<UnitElement> ToJumpUnitElements(IEnumerable<ElementCode> elementCodes) {
+        var jumpElements = new List<UnitElement>();
+        foreach (var jump in elementCodes) {
+            if (lowerCodeDict.TryGetValue(jump.LowerInvariantCode(), out var unitElement)) {
+                if (((IElement)unitElement).ElementType != ElementType.Jump) {
+                    Console.WriteLine($"<!> 連続ジャンプにジャンプでない項目がふくまれています {jump.RawCode()}");
+                    continue;
+                }
+                jumpElements.Add(unitElement);
+            } else {
+                Console.WriteLine($"<!> 連続ジャンプに定した競技に含まれない項目があります {jump.RawCode()}");
+            }
+        }
+        return jumpElements;
     }
 }
