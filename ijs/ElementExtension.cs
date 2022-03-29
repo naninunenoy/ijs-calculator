@@ -3,16 +3,16 @@
 namespace ijs; 
 
 public static class ElementExtension {
-    public static IElement ToHalfSecondElement(IElement element) {
+    public static IElement AsHalfSecondElement(this IElement element) {
         return new SecondHalfElement(element);
     }
 
     public static (bool, double) IsHalfSecond(this IElement element) {
         return (element is SecondHalfElement, SecondHalfElement.Magnification);
     }
-    public static IElement CreateAsContinuousJumps(params IElement[] jumps) {
+    public static IElement AsContinuousJumps(this IEnumerable<IElement> jumps) {
         var continuousJumps = new ContinuousJumps();
-        continuousJumps.Build(jumps);
+        continuousJumps.Build(jumps.ToArray());
         return continuousJumps;
     }
 }

@@ -19,7 +19,7 @@ public class ProgramParser {
             if (code.IsContinuousJump(out var jumpElementCodes)) {
                 // 連続ジャンプへの変換
                 try {
-                    element = ElementExtension.CreateAsContinuousJumps(ToJumpElements(jumpElementCodes).ToArray());
+                    element = ToJumpElements(jumpElementCodes).AsContinuousJumps();
                 } catch (Exception e) {
                     Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {code.RawCode()} {e.Message}");
                 }
@@ -32,7 +32,7 @@ public class ProgramParser {
                 }
             }
             // 後半のエレメントか判定して追加
-            elements.Add(code.IsSecondHalf() ? ElementExtension.ToHalfSecondElement(element) : element);
+            elements.Add(code.IsSecondHalf() ? element.AsHalfSecondElement() : element);
         }
 
         var elementList = new ElementList();
