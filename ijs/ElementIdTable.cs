@@ -83,7 +83,7 @@ internal static class ElementIdTable {
                 // PiF のみレベル分けがない
                 return code is PairElementCode.PiF
                     ? new[] { new ElementId(PairElementCode.PiF) }
-                    : PairElementCode.StSq.WithLevelElementLevel(LevelAll);
+                    : code.WithLevelElementLevel(LevelAll);
             });
     }
 

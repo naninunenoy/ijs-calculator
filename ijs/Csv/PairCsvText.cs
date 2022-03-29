@@ -4,7 +4,7 @@ public static class PairCsvText {
         public const string JumpCsv = SingleCsvText.JumpCsv;
         public const string StepSequenceCsv = SingleCsvText.StepSequenceCsv;
         public const string LiftCsv = @"
-name,code,basicValue,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
+name,code,baseValue,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
 グループ1,1LiB,1.40,-0.70,-0.56,-0.42,-0.28,-0.14,+0.14,+0.28,+0.42,+0.56,+0.70
 グループ1,1Li1,1.50,-0.75,-0.60,-0.45,-0.30,-0.15,+0.15,+0.30,+0.45,+0.60,+0.75
 グループ1,1Li2,1.70,-0.85,-0.68,-0.51,-0.34,-0.17,+0.17,+0.34,+0.51,+0.68,+0.85
@@ -52,7 +52,7 @@ name,code,basicValue,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
 グループ5リバースラッソー,5RLi4,7.00,-3.50,-2.80,-2.10,-1.40,-0.70,+0.70,+1.40,+2.10,+2.80,+3.50
 ";
         public const string TwistLiftCsv = @"
-name,code,basicValue,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
+name,code,baseValue,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
 1回転ツイストリフト,1TwB,0.90,-0.45,-0.36,-0.27,-0.18,-0.09,+0.09,+0.18,+0.27,+0.36,+0.45
 1回転ツイストリフト,1Tw1,1.10,-0.55,-0.44,-0.33,-0.22,-0.11,+0.11,+0.22,+0.33,+0.44,+0.55
 1回転ツイストリフト,1Tw2,1.30,-0.65,-0.52,-0.39,-0.26,-0.13,+0.13,+0.26,+0.39,+0.52,+0.65
@@ -75,7 +75,7 @@ name,code,basicValue,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
 4回転ツイストリフト,4Tw4,8.00,-4.00,-3.20,-2.40,-1.60,-0.80,+0.80,+1.60,+2.40,+3.20,+4.00
 ";
         public const string ThrowJumpCsv = @"
-name,code,basicValue,error,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
+name,code,baseValue,error,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
 1回転トウループ,1TTh,1.10,0.83,-0.55,-0.44,-0.33,-0.22,-0.11,+0.11,+0.22,+0.33,+0.44,+0.55
 1回転サルコウ,1STh,1.10,0.83,-0.55,-0.44,-0.33,-0.22,-0.11,+0.11,+0.22,+0.33,+0.44,+0.55
 1回転ループ,1LoTh,1.40,1.05,-0.70,-0.56,-0.42,-0.28,-0.14,+0.14,+0.28,+0.42,+0.56,+0.70
@@ -101,7 +101,7 @@ name,code,basicValue,error,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4
 4回転ルッツ,4LzTh,7.50,3.80,-3.75,-3.00,-2.25,-1.50,-0.75,+0.75,+1.50,+2.25,+3.00,+3.75
 ";
         public const string DeathSpiralLiftCsv = @"
-name,code,basicValue,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
+name,code,baseValue,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
 フォアイン,FiDsB,2.60,-1.30,-1.04,-0.78,-0.52,-0.26,+0.26,+0.52,+0.78,+1.04,+1.30
 フォアイン,FiDs1,2.90,-1.45,-1.16,-0.87,-0.58,-0.29,+0.29,+0.58,+0.87,+1.16,+1.45
 フォアイン,FiDs2,3.20,-1.60,-1.28,-0.96,-0.64,-0.32,+0.32,+0.64,+0.96,+1.28,+1.60
@@ -125,7 +125,7 @@ name,code,basicValue,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
 ピボットフィギュア,PiF,2.20,-1.10,-0.88,-0.66,-0.44,-0.22,+0.22,+0.44,+0.66,+0.88,+1.10
 ";
         public const string SpinCsv = @"
-name,code,basicValue,error,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
+name,code,baseValue,error,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
 ペア,PSpB,1.70,,-0.85,-0.68,-0.51,-0.34,-0.17,+0.17,+0.34,+0.51,+0.68,+0.85
 ペア,PSp1,2.00,,-1.00,-0.80,-0.60,-0.40,-0.20,+0.20,+0.40,+0.60,+0.80,+1.00
 ペア,PSp2,2.50,,-1.25,-1.00,-0.75,-0.50,-0.25,+0.25,+0.50,+0.75,+1.00,+1.25

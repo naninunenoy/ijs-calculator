@@ -96,13 +96,12 @@ internal static class PairElementCodeExtensions {
         return code is >= PairElementCode._1Tw and <= PairElementCode._4Tw;
     }
 
-
     public static bool IsThrowJump(this PairElementCode code) {
         return code is >= PairElementCode._1TTh and <= PairElementCode._4LzTh;
     }
 
     public static bool IsDeathSpiral(this PairElementCode code) {
-        return code is >= PairElementCode.FiDs and <= PairElementCode.FiDs or PairElementCode.PiF;
+        return code is >= PairElementCode.FiDs and <= PairElementCode.BoDs or PairElementCode.PiF;
     }
 
     public static bool IsSpin(this PairElementCode code) {

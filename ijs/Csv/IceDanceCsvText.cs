@@ -2,7 +2,7 @@
 
 public static class IceDanceCsvText {
     public const string PatternDanceCsv = @"
-name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
+name,code,baseValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 ブルース第1シークエンス,1BL1,3.2,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 ブルース第1シークエンス,1BL2,3.8,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 ブルース第1シークエンス,1BL3,4.4,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
@@ -17,7 +17,7 @@ name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 ミッドナイトブルース第1シークエンス,1MN4,5.0,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 ";
     public const string SpinCsv = @"
-name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
+name,code,baseValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 スピン,Sp1,2.6,-1.0,-0.7,-0.3,+0.6,+1.2,+1.8
 スピン,Sp2,3.6,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 スピン,Sp3,4.6,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
@@ -28,7 +28,7 @@ name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 コンビネーションスピン,CoSp4,5.6,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 ";
     public const string LiftCsv = @"
-name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
+name,code,baseValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 ステーショナリーリフト,StaLi1,2.0,-1.0,-0.7,-0.3,+0.6,+1.2,+1.8
 ステーショナリーリフト,StaLi2,3.0,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 ステーショナリーリフト,StaLi3,4.0,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
@@ -47,14 +47,14 @@ name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 ローテーショナルリフト,RoLi4,4.5,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 ";    
     public const string TwizzleCsv = @"
-name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
+name,code,baseValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 ツイズル・セット(シークエンシャルまたはシンクロナイズドツイズル),STw1,3.1,-1.0,-0.7,-0.3,+0.6,+1.2,+1.8
 ツイズル・セット(シークエンシャルまたはシンクロナイズドツイズル),STw2,4.6,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 ツイズル・セット(シークエンシャルまたはシンクロナイズドツイズル),STw3,5.6,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 ツイズル・セット(シークエンシャルまたはシンクロナイズドツイズル),STw4,6.6,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 ";
     public const string StepSequenceCsv = @"
-name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
+name,code,baseValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 パーシャルステップシークエンス,PStB,2.6,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 パーシャルステップシークエンス,PSt1,4.1,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8
 パーシャルステップシークエンス,PSt2,5.6,-3.0,-2.0,-1.0,+1.1,+2.2,+3.3
@@ -92,7 +92,7 @@ name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 非接触サーキュラー,NtCiSt4,8.6,-3.0,-2.0,-1.0,+1.1,+2.2,+3.3
 ";
     public const string ChoreographicElementsCsv = @"
-name,code,basicValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
+name,code,baseValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 コレオグラフィックダンスリフト,ChLi1,0.7,-0.6,-0.4,-0.2,+0.7,+1.4,+2.1
 コレオグラフィックスピニングムーブメント,ChSp1,0.7,-0.6,-0.4,-0.2,+0.7,+1.4,+2.1
 コレオグラフィックツイズリングムーブメント,ChTw1,0.7,-0.6,-0.4,-0.2,+0.7,+1.4,+2.1
