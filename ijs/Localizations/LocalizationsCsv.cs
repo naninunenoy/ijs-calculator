@@ -55,7 +55,7 @@ ChSq,Choreo Sequence,コレオグラフィックシークエンス
 ";
 
     public const string Pair = @"
-code,ja,en
+code,en,ja
 1T,Single Toe Loop,1回転トウループ
 1S,Single Salchow,1回転サルコウ
 1Lo,Single Loop,1回転ループ
@@ -129,7 +129,7 @@ PCoSp,Pair Combination Spin,ペアコンビネーションスピン
 ";
     
     public const string IceDance = @"
-code,ja,en
+code,en,ja
 1BL,Blues Sequence 1,ブルース第1シークエンス
 2BL,Blues Sequence 2,ブルース第2シークエンス
 1MN,Midnight Blues Section 1,ミッドナイトブルース第1シークエンス

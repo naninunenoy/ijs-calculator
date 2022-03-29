@@ -36,7 +36,7 @@ internal readonly struct ElementId : IEquatable<ElementId> {
     }
     
     public override string ToString() {
-        return $"{Code}{Level.ToLevelString()}";
+        return $"{Code}{Level.ToEnumString()}";
     }
 
     public static bool operator ==(ElementId left, ElementId right) {

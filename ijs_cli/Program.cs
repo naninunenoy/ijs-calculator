@@ -1,4 +1,6 @@
 ﻿using System.CommandLine;
+using System.Globalization;
+using ijs;
 using ijs_cli;
 
 // $ dotnet run -- --program 4S-4T+3T-CCSp4-3Ax-FSSp4-StSq3-CCoSp4
@@ -42,6 +44,8 @@ rootCommand.Description = "IJS Cli";
 
 rootCommand.SetHandler((string programArgs, string sportType, bool showList) =>
 {
+    ElementTable.Initialize(RegionInfo.CurrentRegion);
+    
     if (string.IsNullOrEmpty(programArgs)) {
         if (showList) {
             Console.WriteLine(AllCodeList.Text());

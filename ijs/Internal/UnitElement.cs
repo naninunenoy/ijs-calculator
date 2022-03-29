@@ -38,10 +38,10 @@ internal class UnitElement : IElement {
     public string Name {
         get {
             var name = innerName.GetNameOf(RegionInfo);
-            return Id.Level is ElementLevel.None ? name : $"{name} {Id.Level.ToLevelString()}";
+            return Id.Level is ElementLevel.None ? name : $"{name} Lv.{Id.Level.ToEnumString()}";
         }
     }
     public ElementType ElementType => innerType.ElementType;
 
-    public RegionInfo RegionInfo { set; get; } = RegionInfo.CurrentRegion;
+    public RegionInfo RegionInfo { init; private get; } = RegionInfo.CurrentRegion;
 }

@@ -1,45 +1,45 @@
-﻿using ijs.Internal;
+﻿using System.Globalization;
+using ijs.Internal;
 using ijs.Localizations;
 
 namespace ijs;
 
 public static class ElementTable {
-    static readonly IReadOnlyDictionary<ElementId, UnitElement> SingleElementsDict;
-    static readonly IReadOnlyDictionary<ElementId, UnitElement> PairElementsDict;
-    static readonly IReadOnlyDictionary<ElementId, UnitElement> IceDanceElementsDict;
-    public static IEnumerable<IElement> SingleElementsList => SingleElementsDict.Values;
-    public static IEnumerable<IElement> PairElementsList => PairElementsDict.Values;
-    public static IEnumerable<IElement> IceDanceElementsList => IceDanceElementsDict.Values;
+    static IReadOnlyDictionary<ElementId, UnitElement> singleElementsDict = new Dictionary<ElementId, UnitElement>();
+    static IReadOnlyDictionary<ElementId, UnitElement> pairElementsDict = new Dictionary<ElementId, UnitElement>();
+    static IReadOnlyDictionary<ElementId, UnitElement> iceDanceElementsDict = new Dictionary<ElementId, UnitElement>();
+    public static IEnumerable<IElement> SingleElementsList => singleElementsDict.Values;
+    public static IEnumerable<IElement> PairElementsList => pairElementsDict.Values;
+    public static IEnumerable<IElement> IceDanceElementsList => iceDanceElementsDict.Values;
     
-    static ElementTable() {
+    public static void Initialize(RegionInfo regionInfo) {
         try {
             CsvDictSet.Build();
             LocalizationsDict.Build();
         } catch (Exception e) {
             Console.WriteLine(e.Message);
         }
-        
-        SingleElementsDict = ConcatUnitElements(
-                ToElements(ElementTypeList.SingleJump, ElementIdTable.SingleJumpElementsIds()),
-                ToElements(ElementTypeList.SingleSpin, ElementIdTable.SingleSpinElementsIds()),
-                ToElements(ElementTypeList.SingleStepSequence, ElementIdTable.SingleStepSequenceElementsIds()))
+        singleElementsDict = ConcatUnitElements(
+                ToElements(ElementTypeList.SingleJump, ElementIdTable.SingleJumpElementsIds(), regionInfo),
+                ToElements(ElementTypeList.SingleSpin, ElementIdTable.SingleSpinElementsIds(), regionInfo),
+                ToElements(ElementTypeList.SingleStepSequence, ElementIdTable.SingleStepSequenceElementsIds(), regionInfo))
             .ToDictionary(x => x.Id);
-        PairElementsDict = ConcatUnitElements(
-                ToElements(ElementTypeList.PairJump, ElementIdTable.PairJumpElementsIds()),
-                ToElements(ElementTypeList.PairStepSequence, ElementIdTable.PairStepSequenceElementsIds()),
-                ToElements(ElementTypeList.PairLift, ElementIdTable.PairLiftElementsIds()),
-                ToElements(ElementTypeList.PairTwistLift, ElementIdTable.PairTwistLiftElementsIds()),
-                ToElements(ElementTypeList.PairThrowJump, ElementIdTable.PairThrowJumpElementsIds()),
-                ToElements(ElementTypeList.PairDeathSpiral, ElementIdTable.PairDeathSpiralElementsIds()),
-                ToElements(ElementTypeList.PairSpin, ElementIdTable.PairSpinElementsIds()))
+        pairElementsDict = ConcatUnitElements(
+                ToElements(ElementTypeList.PairJump, ElementIdTable.PairJumpElementsIds(), regionInfo),
+                ToElements(ElementTypeList.PairStepSequence, ElementIdTable.PairStepSequenceElementsIds(), regionInfo),
+                ToElements(ElementTypeList.PairLift, ElementIdTable.PairLiftElementsIds(), regionInfo),
+                ToElements(ElementTypeList.PairTwistLift, ElementIdTable.PairTwistLiftElementsIds(), regionInfo),
+                ToElements(ElementTypeList.PairThrowJump, ElementIdTable.PairThrowJumpElementsIds(), regionInfo),
+                ToElements(ElementTypeList.PairDeathSpiral, ElementIdTable.PairDeathSpiralElementsIds(), regionInfo),
+                ToElements(ElementTypeList.PairSpin, ElementIdTable.PairSpinElementsIds(), regionInfo))
             .ToDictionary(x => x.Id);
-        IceDanceElementsDict = ConcatUnitElements(
-                ToElements(ElementTypeList.IceDancePatternDance, ElementIdTable.IceDancePatternDanceElementsIds()),
-                ToElements(ElementTypeList.IceDanceSpin, ElementIdTable.IceDanceSpinElementsIds()),
-                ToElements(ElementTypeList.IceDanceLift, ElementIdTable.IceDanceLiftElementsIds()),
-                ToElements(ElementTypeList.IceDanceTwizzle, ElementIdTable.IceDanceTwizzleElementsIds()),
-                ToElements(ElementTypeList.IceDanceStepSequence, ElementIdTable.IceDanceStepSequenceElementsIds()),
-                ToElements(ElementTypeList.IceDanceChoreographicElement, ElementIdTable.IceDanceChoreographicElementsIds()))
+        iceDanceElementsDict = ConcatUnitElements(
+                ToElements(ElementTypeList.IceDancePatternDance, ElementIdTable.IceDancePatternDanceElementsIds(), regionInfo),
+                ToElements(ElementTypeList.IceDanceSpin, ElementIdTable.IceDanceSpinElementsIds(), regionInfo),
+                ToElements(ElementTypeList.IceDanceLift, ElementIdTable.IceDanceLiftElementsIds(), regionInfo),
+                ToElements(ElementTypeList.IceDanceTwizzle, ElementIdTable.IceDanceTwizzleElementsIds(), regionInfo),
+                ToElements(ElementTypeList.IceDanceStepSequence, ElementIdTable.IceDanceStepSequenceElementsIds(), regionInfo),
+                ToElements(ElementTypeList.IceDanceChoreographicElement, ElementIdTable.IceDanceChoreographicElementsIds(), regionInfo))
             .ToDictionary(x => x.Id);
     }
     
@@ -47,11 +47,14 @@ public static class ElementTable {
         return unitElements.Aggregate(Enumerable.Empty<UnitElement>(), (total, x) => total.Concat(x));
     }
 
-    static IEnumerable<UnitElement> ToElements(SportsElementType sportsElementType, IEnumerable<ElementId> elementIds) {
+    static IEnumerable<UnitElement> ToElements(SportsElementType sportsElementType, IEnumerable<ElementId> elementIds, RegionInfo regionInfo) {
         return elementIds.Select(id => {
             CsvDictSet.TryGetValues(sportsElementType.SportsType, id.ToString(), out var baseValue);
             LocalizationsDict.TryGetValues(sportsElementType.SportsType, id.Code.ToString(), out var elementName);
-            return new UnitElement(sportsElementType, id, elementName, baseValue);
+            var element = new UnitElement(sportsElementType, id, elementName, baseValue) {
+                RegionInfo = regionInfo
+            };
+            return element;
         });
     }
 }
