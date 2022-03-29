@@ -1,4 +1,4 @@
-﻿namespace ijs; 
+﻿namespace ijs.Internal; 
 
 internal static class ElementTypeList {
     public static readonly SportsElementType SingleJump = new(SportsType.Single, ElementType.Jump);

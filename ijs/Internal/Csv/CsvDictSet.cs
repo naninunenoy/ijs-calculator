@@ -1,4 +1,4 @@
-﻿namespace ijs.Csv; 
+﻿namespace ijs.Internal;
 
 internal static class CsvDictSet {
     static readonly CsvDict SingleJumpDict;

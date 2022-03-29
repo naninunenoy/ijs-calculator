@@ -1,4 +1,4 @@
-﻿namespace ijs;
+﻿namespace ijs.Internal;
 
 internal static class ElementIdTable {
     static readonly ElementLevel[] LevelAll = ((ElementLevel[])Enum.GetValues(typeof(ElementLevel)))

@@ -1,4 +1,4 @@
-﻿namespace ijs;
+﻿namespace ijs.Internal;
 
 /// <summary>
 /// エレメンツを一意に決定できる情報

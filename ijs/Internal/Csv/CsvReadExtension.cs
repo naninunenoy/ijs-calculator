@@ -1,4 +1,4 @@
-﻿namespace ijs.Csv; 
+﻿namespace ijs.Internal; 
 
 internal static class CsvReadExtension {
     public static bool TryGetBaseValue(this CsvDict dict, string code, out BaseValue baseValue) {

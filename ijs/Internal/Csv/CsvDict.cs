@@ -1,6 +1,6 @@
-﻿namespace ijs.Csv; 
+﻿namespace ijs.Internal;
 
-public class CsvDict {
+internal class CsvDict {
     readonly string keyTitle;
     readonly Dictionary<string, int> titleIndexDict;
     readonly Dictionary<string, string[]> valuesDict;

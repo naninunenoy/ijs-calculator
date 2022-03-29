@@ -1,4 +1,5 @@
 ﻿using ijs;
+using ijs.Internal;
 using ijs_test.TestDriver;
 using Xunit;
 

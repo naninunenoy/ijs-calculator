@@ -1,4 +1,4 @@
-﻿namespace ijs;
+﻿namespace ijs.Internal;
 
 internal class ContinuousJumps : IElement {
     const int maxJumpCount = 3;

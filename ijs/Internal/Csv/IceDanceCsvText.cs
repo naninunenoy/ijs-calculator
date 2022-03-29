@@ -1,6 +1,6 @@
-﻿namespace ijs.Csv;
+﻿namespace ijs.Internal; 
 
-public static class IceDanceCsvText {
+internal static class IceDanceCsvText {
     public const string PatternDanceCsv = @"
 name,code,baseValue,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3
 ブルース第1シークエンス,1BL1,3.2,-1.5,-1.0,-0.5,+0.6,+1.2,+1.8

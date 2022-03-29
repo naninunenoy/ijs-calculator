@@ -1,4 +1,6 @@
-﻿namespace ijs; 
+﻿using ijs.Internal;
+
+namespace ijs; 
 
 public class ElementList {
     List<IElement> list;

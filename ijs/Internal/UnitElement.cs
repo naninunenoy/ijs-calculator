@@ -1,4 +1,4 @@
-﻿namespace ijs; 
+﻿namespace ijs.Internal; 
 
 internal class UnitElement : IElement {
     internal ElementId Id { get; }

@@ -1,4 +1,4 @@
-﻿namespace ijs;
+﻿namespace ijs.Internal;
 
 internal class ElementCodeSet : IEquatable<ElementCodeSet> {
     SingleElementCode SingleElementCode { get; }

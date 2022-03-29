@@ -1,4 +1,4 @@
-﻿using ijs.Csv;
+﻿using ijs.Internal;
 using Xunit;
 
 namespace ijs_test; 

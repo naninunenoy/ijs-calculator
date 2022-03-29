@@ -1,4 +1,4 @@
-﻿namespace ijs; 
+﻿namespace ijs.Internal; 
 
 /// <summary>
 /// エレメンツのレベル

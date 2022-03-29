@@ -1,4 +1,6 @@
-﻿namespace ijs; 
+﻿using ijs.Internal;
+
+namespace ijs; 
 
 public static class ElementExtension {
     public static IElement ToHalfSecondElement(IElement element) {

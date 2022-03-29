@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using ijs;
+using ijs.Internal;
 using Xunit;
 
 namespace ijs_test;

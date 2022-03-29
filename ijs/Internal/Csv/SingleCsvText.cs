@@ -1,6 +1,6 @@
-﻿namespace ijs.Csv;
+﻿namespace ijs.Internal;
 
-public static class SingleCsvText {
+internal static class SingleCsvText {
     public const string JumpCsv = @"
 name,code,baseValue,errorOr,errorAnd,goe-5,goe-4,goe-3,goe-2,goe-1,goe+1,goe+2,goe+3,goe+4,goe+5
 1回転トウループ,1T,0.40,0.32,,-0.20,-0.16,-0.12,-0.08,-0.04,+0.04,+0.08,+0.12,+0.16,+0.20

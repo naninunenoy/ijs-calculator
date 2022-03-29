@@ -1,6 +1,6 @@
-﻿namespace ijs.Csv;
+﻿namespace ijs.Internal;
 
-public static class PairCsvText {
+internal static class PairCsvText {
         public const string JumpCsv = SingleCsvText.JumpCsv;
         public const string StepSequenceCsv = SingleCsvText.StepSequenceCsv;
         public const string LiftCsv = @"

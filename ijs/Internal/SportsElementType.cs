@@ -1,4 +1,4 @@
-﻿namespace ijs;
+﻿namespace ijs.Internal;
 
 internal readonly struct SportsElementType {
     public readonly SportsType SportsType;

@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace ijs;
+namespace ijs.Internal;
 
 /// <summary>
 /// 基礎点
