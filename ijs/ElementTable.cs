@@ -49,6 +49,10 @@ public static class ElementTable {
         return elementIds.Select(id => {
             CsvDictSet.TryGetValues(sportsElementType.SportsType, id.ToString(),
                 out var baseValue, out var elementName);
+            // 名前にスピンを付与したい
+            if (sportsElementType.ElementType == ElementType.Spin && !elementName.jpn.Contains("スピン")) {
+                elementName = new ElementName($"{elementName.jpn}スピン");
+            }
             return new UnitElement(
                 sportsElementType, id, elementName, baseValue);
         });
