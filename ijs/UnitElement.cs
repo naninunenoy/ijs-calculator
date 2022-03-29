@@ -13,10 +13,6 @@ internal class UnitElement : IElement {
         innerBaseValue = baseValue;
     }
 
-    public override string ToString() {
-        return $"Type={innerType},Id={Id},Name={Name},BaseValue={innerBaseValue.value}";
-    }
-
     public bool Equals(IElement? other) {
         // code(1AとかFCSp4とか)で同一エレメントかを判定
         var mine = Id.ToString().ToLowerInvariant();
@@ -37,6 +33,6 @@ internal class UnitElement : IElement {
     
     public string FullCode => Id.ToString();
     public double BaseValue => innerBaseValue.value;
-    public string Name => innerName.jpn;
+    public string Name => Id.Level is ElementLevel.None ? innerName.jpn : $"{innerName.jpn}レベル{Id.Level.ToEnumString()}";
     public ElementType ElementType => innerType.ElementType;
 }

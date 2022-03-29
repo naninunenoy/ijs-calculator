@@ -91,7 +91,7 @@ internal static class ElementIdTable {
         return PairElementCodeExtensions
             .AllEnums()
             .Where(x => x.IsSpin())
-            .Select(code => new ElementId(code));
+            .SelectMany(code => code.WithLevelElementLevel(LevelAll));
     }
 
     public static IEnumerable<ElementId> IceDancePatternDanceElementsIds() {

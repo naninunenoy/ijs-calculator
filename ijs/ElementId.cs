@@ -6,25 +6,25 @@
 /// </summary>
 internal readonly struct ElementId : IEquatable<ElementId> {
     ElementCodeSet Code { get; }
-    readonly ElementLevel level;
+    internal readonly ElementLevel Level;
 
     internal ElementId(SingleElementCode code, ElementLevel level = ElementLevel.None) {
-        this.level = level;
+        Level = level;
         Code = new ElementCodeSet(code);
     }
 
     internal ElementId(PairElementCode code, ElementLevel level = ElementLevel.None) {
-        this.level = level;
+        Level = level;
         Code = new ElementCodeSet(code);
     }
 
     internal ElementId(IceDanceElementCode code, ElementLevel level = ElementLevel.None) {
-        this.level = level;
+        Level = level;
         Code = new ElementCodeSet(code);
     }
     
     public bool Equals(ElementId other) {
-        return level == other.level && Code.Equals(other.Code);
+        return Level == other.Level && Code.Equals(other.Code);
     }
 
     public override bool Equals(object? obj) {
@@ -32,11 +32,11 @@ internal readonly struct ElementId : IEquatable<ElementId> {
     }
 
     public override int GetHashCode() {
-        return HashCode.Combine((int)level, Code);
+        return HashCode.Combine((int)Level, Code);
     }
     
     public override string ToString() {
-        return $"{Code}{level.ToEnumString()}";
+        return $"{Code}{Level.ToEnumString()}";
     }
 
     public static bool operator ==(ElementId left, ElementId right) {
