@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace ijs.Csv; 
+﻿namespace ijs.Csv; 
 
 public class CsvDict {
     readonly string keyTitle;
@@ -26,7 +24,6 @@ public class CsvDict {
             if (title == keyTitle) {
                 keyTitleIndex = i;
             }
-            Debug.WriteLine(title);
         }
         if (keyTitleIndex == -1) throw new ArgumentException($"keyTitle {keyTitle} is not found");
         // 指定したタイトルとキーにした辞書作成
