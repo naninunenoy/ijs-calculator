@@ -19,10 +19,9 @@ public class ProgramParser {
             if (code.IsContinuousJump(out var jumpElementCodes)) {
                 // 連続ジャンプへの変換
                 try {
-                    var jumps = ToJumpUnitElements(jumpElementCodes).ToArray();
-                    element = ElementExtension.CreateAsContinuousJumps(jumps);
+                    element = ElementExtension.CreateAsContinuousJumps(ToJumpElements(jumpElementCodes).ToArray());
                 } catch (Exception e) {
-                    Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {e.Message} {code.RawCode()}");
+                    Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {code.RawCode()} {e.Message}");
                 }
             } else {
                 // 単独のエレメントとみなしてピックアップ
@@ -32,7 +31,7 @@ public class ProgramParser {
                     Console.WriteLine($"<!> 指定した競技に含まれない項目があります {code.RawCode()}");
                 }
             }
-            // 後半のエレメントを判定
+            // 後半のエレメントか判定して追加
             elements.Add(code.IsSecondHalf() ? ElementExtension.ToHalfSecondElement(element) : element);
         }
 
@@ -45,7 +44,7 @@ public class ProgramParser {
         return program.Split("-", StringSplitOptions.RemoveEmptyEntries).Select(x => new ElementCode(x));
     }
 
-    IEnumerable<IElement> ToJumpUnitElements(IEnumerable<ElementCode> elementCodes) {
+    IEnumerable<IElement> ToJumpElements(IEnumerable<ElementCode> elementCodes) {
         var jumpElements = new List<IElement>();
         var errors = new List<string>();
         foreach (var jump in elementCodes) {
@@ -56,12 +55,12 @@ public class ProgramParser {
                 }
                 jumpElements.Add(element);
             } else {
-                errors.Add($"<!> 連続ジャンプに定した競技に含まれない項目があります {jump.RawCode()}");
+                errors.Add($"<!> 連続ジャンプに指定した競技に含まれない項目があります {jump.RawCode()}");
             }
         }
         // 全てのコードが連続ジャンプとして正しく解析された場合のみ連続ジャンプとして返す
         if (errors.Any()) {
-            throw new ArgumentException(string.Join("\n", errors));
+            throw new ArgumentException($"\n{string.Join("\n", errors)}");
         }
         return jumpElements;
     }
