@@ -1,6 +1,8 @@
 ﻿namespace ijs.Localizations; 
 
-public static class LocalizationsCsv {
+internal static class LocalizationsCsv {
+    public static IEnumerable<string> LangCodes() => new[] { "en", "ja" };
+    
     public const string Single = @"
 code,en,ja
 1T,Single Toe Loop,1回転トウループ

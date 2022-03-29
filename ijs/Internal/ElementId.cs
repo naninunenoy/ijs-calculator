@@ -5,7 +5,7 @@
 /// 記号とレベルからなる
 /// </summary>
 internal readonly struct ElementId : IEquatable<ElementId> {
-    ElementCodeSet Code { get; }
+    internal ElementCodeSet Code { get; }
     internal readonly ElementLevel Level;
 
     internal ElementId(SingleElementCode code, ElementLevel level = ElementLevel.None) {
@@ -36,7 +36,7 @@ internal readonly struct ElementId : IEquatable<ElementId> {
     }
     
     public override string ToString() {
-        return $"{Code}{Level.ToEnumString()}";
+        return $"{Code}{Level.ToLevelString()}";
     }
 
     public static bool operator ==(ElementId left, ElementId right) {

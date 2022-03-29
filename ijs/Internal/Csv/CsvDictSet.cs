@@ -54,7 +54,7 @@ internal static class CsvDictSet {
     }
 
     internal static bool TryGetValues(SportsType sportsType, string code,
-        out BaseValue baseValue, out ElementName elementName) {
+        out BaseValue baseValue) {
         var dictList = sportsType switch {
             SportsType.Single => SingleDictAsEnumerable(),
             SportsType.Pair => PairDictAsEnumerable(),
@@ -62,17 +62,12 @@ internal static class CsvDictSet {
             _ => throw new ArgumentOutOfRangeException(nameof(sportsType), sportsType, null)
         };
         baseValue = default;
-        elementName = default;
         var baseValueOk = false;
-        var elementNameOk = false;
         foreach (var dict in dictList) {
             if (!baseValueOk) {
                 baseValueOk = dict.TryGetBaseValue(code, out baseValue);
             }
-            if (!elementNameOk) {
-                elementNameOk = dict.TryGetElementName(code, out elementName);
-            }
-            if (baseValueOk && elementNameOk) {
+            if (baseValueOk) {
                 return true;
             }
         }

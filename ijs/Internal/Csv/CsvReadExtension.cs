@@ -9,12 +9,4 @@ internal static class CsvReadExtension {
         baseValue = default;
         return false;
     }
-    public static bool TryGetElementName(this CsvDict dict, string code, out ElementName elementName) {
-        if (dict.TryGetValue(code, "name", out string name)) {
-            elementName = new ElementName(name);
-            return true;
-        }
-        elementName = default;
-        return false;
-    }
 }

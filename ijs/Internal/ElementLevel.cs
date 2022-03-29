@@ -31,13 +31,13 @@ internal enum ElementLevel {
 }
 
 internal static class ElementLevelExtension {
-    public static string ToEnumString(this ElementLevel elementLevel) {
+    public static string ToLevelString(this ElementLevel elementLevel) {
         return elementLevel switch {
-            ElementLevel.LvB => "B",
-            ElementLevel.Lv1 => "1",
-            ElementLevel.Lv2 => "2",
-            ElementLevel.Lv3 => "3",
-            ElementLevel.Lv4 => "4",
+            ElementLevel.LvB => "Lv.B",
+            ElementLevel.Lv1 => "Lv.1",
+            ElementLevel.Lv2 => "Lv.2",
+            ElementLevel.Lv3 => "Lv.3",
+            ElementLevel.Lv4 => "Lv.4",
             _ => ""
         };
     }

@@ -1,4 +1,6 @@
-﻿namespace ijs.Internal; 
+﻿using System.Globalization;
+
+namespace ijs.Internal; 
 
 internal class UnitElement : IElement {
     internal ElementId Id { get; }
@@ -33,6 +35,13 @@ internal class UnitElement : IElement {
     
     public string FullCode => Id.ToString();
     public double BaseValue => innerBaseValue.value;
-    public string Name => Id.Level is ElementLevel.None ? innerName.jpn : $"{innerName.jpn}レベル{Id.Level.ToEnumString()}";
+    public string Name {
+        get {
+            var name = innerName.GetNameOf(RegionInfo);
+            return Id.Level is ElementLevel.None ? name : $"{name} {Id.Level.ToLevelString()}";
+        }
+    }
     public ElementType ElementType => innerType.ElementType;
+
+    public RegionInfo RegionInfo { set; get; } = RegionInfo.CurrentRegion;
 }

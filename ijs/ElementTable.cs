@@ -1,4 +1,5 @@
 ﻿using ijs.Internal;
+using ijs.Localizations;
 
 namespace ijs;
 
@@ -13,6 +14,7 @@ public static class ElementTable {
     static ElementTable() {
         try {
             CsvDictSet.Build();
+            LocalizationsDict.Build();
         } catch (Exception e) {
             Console.WriteLine(e.Message);
         }
@@ -47,14 +49,9 @@ public static class ElementTable {
 
     static IEnumerable<UnitElement> ToElements(SportsElementType sportsElementType, IEnumerable<ElementId> elementIds) {
         return elementIds.Select(id => {
-            CsvDictSet.TryGetValues(sportsElementType.SportsType, id.ToString(),
-                out var baseValue, out var elementName);
-            // 名前にスピンを付与したい
-            if (sportsElementType.ElementType == ElementType.Spin && !elementName.jpn.Contains("スピン")) {
-                elementName = new ElementName($"{elementName.jpn}スピン");
-            }
-            return new UnitElement(
-                sportsElementType, id, elementName, baseValue);
+            CsvDictSet.TryGetValues(sportsElementType.SportsType, id.ToString(), out var baseValue);
+            LocalizationsDict.TryGetValues(sportsElementType.SportsType, id.Code.ToString(), out var elementName);
+            return new UnitElement(sportsElementType, id, elementName, baseValue);
         });
     }
 }
