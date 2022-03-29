@@ -1,4 +1,6 @@
-﻿namespace ijs;
+﻿using ijs.Csv;
+
+namespace ijs;
 
 public static class ElementTable {
     public static readonly IReadOnlyDictionary<ElementId, UnitElement> SingleElementsDict;
@@ -9,6 +11,12 @@ public static class ElementTable {
     public static IEnumerable<UnitElement> IceDanceElementsList => IceDanceElementsDict.Values;
     
     static ElementTable() {
+        try {
+            CsvDictSet.Build();
+        } catch (Exception e) {
+            Console.WriteLine(e.Message);
+        }
+        
         SingleElementsDict = ConcatUnitElements(
                 ToElements(ElementTypeList.SingleJump, ElementIdTable.SingleJumpElementsIds()),
                 ToElements(ElementTypeList.SingleSpin, ElementIdTable.SingleSpinElementsIds()),
@@ -38,7 +46,11 @@ public static class ElementTable {
     }
 
     static IEnumerable<UnitElement> ToElements(SportsElementType sportsElementType, IEnumerable<ElementId> elementIds) {
-        return elementIds.Select(id => new UnitElement(
-            sportsElementType, id, ElementName.FromElementsId(id), BaseValue.FromElementsId(id)));
+        return elementIds.Select(id => {
+            CsvDictSet.TryGetValues(sportsElementType.SportsType, id.ToString(),
+                out var baseValue, out var elementName);
+            return new UnitElement(
+                sportsElementType, id, elementName, baseValue);
+        });
     }
 }
