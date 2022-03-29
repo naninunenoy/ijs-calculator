@@ -8,11 +8,11 @@ public class ElementCode {
 
     public bool IsContinuousJump(out ElementCode[] jumps) {
         var codes = rawString.Split("+", StringSplitOptions.RemoveEmptyEntries);
-        if (codes.Length == 0) {
+        // 「連続」ジャンプとは2回以上
+        if (codes.Length < 2) {
             jumps = Array.Empty<ElementCode>();
             return false;
         }
-
         jumps = codes.Select(x => new ElementCode(x)).ToArray();
         return true;
     }
