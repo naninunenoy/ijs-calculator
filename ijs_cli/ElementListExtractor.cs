@@ -30,6 +30,8 @@ public class ElementListExtractor {
         foreach (var line in lines) {
             stringBuilder.AppendLine(line.ToLineString(maxNameWidth - line.GetNameAndCodeWidth()));
         }
+        stringBuilder.AppendLine(new string('-', maxWidth));
+        stringBuilder.Append($"{elementList.ToElementsCountDescription()}");
         stringBuilder.AppendLine(new string('=', maxWidth));
         return stringBuilder.ToString();
     }
