@@ -15,5 +15,6 @@ internal class SecondHalfElement : IElement {
     public string Name => element.Name;
     public string FullCode => element.FullCode;
     public ElementType ElementType => element.ElementType;
-    public double BaseValue => element.BaseValue * Magnification;
+    public double BaseValue =>
+        element.ElementType == ElementType.Jump ? element.BaseValue * Magnification : element.BaseValue;
 }

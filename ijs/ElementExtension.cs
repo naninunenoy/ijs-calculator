@@ -4,7 +4,7 @@ namespace ijs;
 
 public static class ElementExtension {
     public static IElement AsHalfSecondElement(this IElement element) {
-        return new SecondHalfElement(element);
+        return element.ElementType == ElementType.Jump ? new SecondHalfElement(element) : element;
     }
 
     public static (bool, double) IsHalfSecond(this IElement element) {
