@@ -6,7 +6,7 @@ public class ProgramParser {
     readonly IReadOnlyDictionary<string, UnitElement> lowerCodeDict;
 
     public ProgramParser(IEnumerable<UnitElement> allElements) {
-        lowerCodeDict = allElements.ToDictionary(x => x.Id.ToString().ToLowerInvariant());
+        lowerCodeDict = allElements.ToDictionary(x => x.FullCode.ToLowerInvariant());
     }
 
     public ElementList Parse(string programArg) {

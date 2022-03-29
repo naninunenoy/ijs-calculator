@@ -5,9 +5,9 @@ namespace ijs;
 /// <summary>
 /// 基礎点
 /// </summary>
-public readonly struct BaseValue {
+internal readonly struct BaseValue {
     public readonly double value;
-    public BaseValue(double value) {
+    internal BaseValue(double value) {
         this.value = value;
     }
 

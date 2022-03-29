@@ -1,20 +1,20 @@
 ﻿namespace ijs; 
 
 public class UnitElement : IElement {
-    SportsElementType Type { get; }
-    public ElementId Id { get; }
-    public ElementName Name { get; }
-    public BaseValue BaseValue { get; }
+    internal ElementId Id { get; }
+    readonly SportsElementType innerType;
+    readonly ElementName innerName;
+    readonly BaseValue innerBaseValue;
     
     internal UnitElement(SportsElementType type, ElementId id, ElementName name, BaseValue baseValue) {
-        Type = type;
+        innerType = type;
         Id = id;
-        Name = name;
-        BaseValue = baseValue;
+        innerName = name;
+        innerBaseValue = baseValue;
     }
 
     public override string ToString() {
-        return $"Type={Type},Id={Id},Name={Name},BaseValue={BaseValue.value}";
+        return $"Type={innerType},Id={Id},Name={Name},BaseValue={innerBaseValue.value}";
     }
 
     public bool Equals(IElement? other) {
@@ -35,8 +35,8 @@ public class UnitElement : IElement {
         return Id.GetHashCode();
     }
     
-    string IElement.FullCode => Id.ToString();
-    double IElement.BaseValue => BaseValue.value;
-    string IElement.Name => Name.jpn;
-    ElementType IElement.ElementType => Type.ElementType;
+    public string FullCode => Id.ToString();
+    public double BaseValue => innerBaseValue.value;
+    public string Name => innerName.jpn;
+    public ElementType ElementType => innerType.ElementType;
 }

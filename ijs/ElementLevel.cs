@@ -3,7 +3,7 @@
 /// <summary>
 /// エレメンツのレベル
 /// </summary>
-public enum ElementLevel {
+internal enum ElementLevel {
     /// <summary>
     /// NON(レベル無し)
     /// </summary>

@@ -1,6 +1,6 @@
 ﻿namespace ijs;
 
-public class ElementCodeSet : IEquatable<ElementCodeSet> {
+internal class ElementCodeSet : IEquatable<ElementCodeSet> {
     SingleElementCode SingleElementCode { get; }
     PairElementCode PairElementCode { get; }
     IceDanceElementCode IceDanceElementCode { get; }

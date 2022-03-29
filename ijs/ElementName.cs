@@ -1,10 +1,10 @@
 ﻿namespace ijs; 
 
-public readonly struct ElementName {
+internal readonly struct ElementName {
     public readonly string jpn;
     //public readonly string eng;
 
-    public ElementName(string jpn) {
+    internal ElementName(string jpn) {
         this.jpn = jpn;
     }
 
