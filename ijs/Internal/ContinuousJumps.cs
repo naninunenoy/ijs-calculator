@@ -21,7 +21,7 @@ internal class ContinuousJumps : IElement {
         jumps = jumpElements.ToList();
     }
 
-    public string Name => string.Join("+", jumps.Select(x => x.Name));
+    public string Name => string.Join(" + ", jumps.Select(x => x.Name));
     public string FullCode => string.Join("+", jumps.Select(x => x.FullCode));
     public double BaseValue => jumps
         .Select(x => x.BaseValue)

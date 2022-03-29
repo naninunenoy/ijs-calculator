@@ -52,10 +52,10 @@ public class ElementListExtractor {
         public int GetNameAndCodeWidth() =>  name.GetWidth(true) + code.GetWidth(false);
 
         public int GetTotalWidth() => name.GetWidth(true) + code.GetWidth(false) +
-                                      2 + ". ".Length + "()".Length + ": ".Length + 5;
+                                      2 + ". ".Length + " ()".Length + ": ".Length + 5;
 
         public string ToLineString(int spaceNumBetweenNameAndCode) {
-            return $"{no,2}. {name}{new string(' ', spaceNumBetweenNameAndCode)}({code})" +
+            return $"{no,2}. {name}{new string(' ', spaceNumBetweenNameAndCode)} ({code})" +
                    $": {score,5} {supplement}";
         }
     }
