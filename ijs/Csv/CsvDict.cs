@@ -1,4 +1,6 @@
-﻿namespace ijs.Csv; 
+﻿using System.Diagnostics;
+
+namespace ijs.Csv; 
 
 public class CsvDict {
     readonly string keyTitle;
@@ -14,7 +16,7 @@ public class CsvDict {
     public void Build(string csv) {
         titleIndexDict.Clear();
         valuesDict.Clear();
-        var lines = csv.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        var lines = csv.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
         // 1行目をタイトルとする
         var keyTitleIndex = -1;
         var firstLineSplit = lines[0].Split(',');
@@ -24,6 +26,7 @@ public class CsvDict {
             if (title == keyTitle) {
                 keyTitleIndex = i;
             }
+            Debug.WriteLine(title);
         }
         if (keyTitleIndex == -1) throw new ArgumentException($"keyTitle {keyTitle} is not found");
         // 指定したタイトルとキーにした辞書作成
@@ -56,7 +59,7 @@ public class CsvDict {
         if (TryGetValue(key, valueName, out string valueString)) {
             return double.TryParse(valueString, out value);
         }
-        value = 0;
+        value = 0.0;
         return false;
     }
 }
