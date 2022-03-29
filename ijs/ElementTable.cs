@@ -3,12 +3,12 @@
 namespace ijs;
 
 public static class ElementTable {
-    public static readonly IReadOnlyDictionary<ElementId, UnitElement> SingleElementsDict;
-    public static readonly IReadOnlyDictionary<ElementId, UnitElement> PairElementsDict;
-    public static readonly IReadOnlyDictionary<ElementId, UnitElement> IceDanceElementsDict;
-    public static IEnumerable<UnitElement> SingleElementsList => SingleElementsDict.Values;
-    public static IEnumerable<UnitElement> PairElementsList => PairElementsDict.Values;
-    public static IEnumerable<UnitElement> IceDanceElementsList => IceDanceElementsDict.Values;
+    static readonly IReadOnlyDictionary<ElementId, UnitElement> SingleElementsDict;
+    static readonly IReadOnlyDictionary<ElementId, UnitElement> PairElementsDict;
+    static readonly IReadOnlyDictionary<ElementId, UnitElement> IceDanceElementsDict;
+    public static IEnumerable<IElement> SingleElementsList => SingleElementsDict.Values;
+    public static IEnumerable<IElement> PairElementsList => PairElementsDict.Values;
+    public static IEnumerable<IElement> IceDanceElementsList => IceDanceElementsDict.Values;
     
     static ElementTable() {
         try {

@@ -30,7 +30,7 @@ internal enum ElementLevel {
     Lv4
 }
 
-internal static partial class ElementExtension {
+internal static class ElementLevelExtension {
     public static string ToEnumString(this ElementLevel elementLevel) {
         return elementLevel switch {
             ElementLevel.LvB => "B",

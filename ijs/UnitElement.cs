@@ -1,6 +1,6 @@
 ﻿namespace ijs; 
 
-public class UnitElement : IElement {
+internal class UnitElement : IElement {
     internal ElementId Id { get; }
     readonly SportsElementType innerType;
     readonly ElementName innerName;

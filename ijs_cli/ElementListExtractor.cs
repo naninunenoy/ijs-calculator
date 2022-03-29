@@ -14,9 +14,12 @@ public class ElementListExtractor {
 
     public string Extract() {
         var lines = elementList.List
-            .Select((x, i) => new Line(i + 1, x.Name, x.FullCode, 
-                 x is UnknownElement ? "????" : x.BaseValue.ToString("F2", CultureInfo.InvariantCulture),
-                x is SecondHalfElement ? $"後半につき{SecondHalfElement.Magnification:F1}倍加点" : ""))
+            .Select((x, i) => {
+                var (isSecondHalf, magnitude) = x.IsHalfSecond();
+                return new Line(i + 1, x.Name, x.FullCode,
+                    x is UnknownElement ? "????" : x.BaseValue.ToString("F2", CultureInfo.InvariantCulture),
+                    isSecondHalf ? $"後半につき{magnitude:F1}倍加点" : "");
+            })
             .ToArray();
         
         var maxWidth = lines.Max(x => x.GetTotalWidth());

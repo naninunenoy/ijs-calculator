@@ -1,6 +1,6 @@
 ﻿namespace ijs;
 
-public class ContinuousJumps : IElement {
+internal class ContinuousJumps : IElement {
     const int maxJumpCount = 3;
     public IReadOnlyList<IElement> Jumps => jumps;
     List<IElement> jumps;

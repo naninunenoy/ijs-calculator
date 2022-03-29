@@ -4,7 +4,7 @@
 /// エレメンツを一意に決定できる情報
 /// 記号とレベルからなる
 /// </summary>
-public readonly struct ElementId : IEquatable<ElementId> {
+internal readonly struct ElementId : IEquatable<ElementId> {
     ElementCodeSet Code { get; }
     readonly ElementLevel level;
 

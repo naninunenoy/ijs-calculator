@@ -3,9 +3,9 @@
 namespace ijs_cli;
 
 public class ProgramParser {
-    readonly IReadOnlyDictionary<string, UnitElement> lowerCodeDict;
+    readonly IReadOnlyDictionary<string, IElement> lowerCodeDict;
 
-    public ProgramParser(IEnumerable<UnitElement> allElements) {
+    public ProgramParser(IEnumerable<IElement> allElements) {
         lowerCodeDict = allElements.ToDictionary(x => x.FullCode.ToLowerInvariant());
     }
 
@@ -17,24 +17,20 @@ public class ProgramParser {
         foreach (var originalCode in programCodes) {
             IElement element = new UnknownElement(originalCode.RawCode());
             if (originalCode.IsContinuousJump(out var jumps) && jumps.Length > 1) {
-                var jumpElements = ToJumpUnitElements(jumps);
-                var continuousJumps = new ContinuousJumps();
+                var jumpElements = ToJumpUnitElements(jumps).ToArray();
                 try {
-                    continuousJumps.Build(jumpElements.Cast<IElement>().ToArray());
-                    element = continuousJumps;
+                    element = ElementExtension.CreateAsContinuousJumps(jumpElements);
                 } catch (Exception e) {
                     Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {e.Message} {originalCode.RawCode()}");
                 }
             } else {
-                if (lowerCodeDict.TryGetValue(originalCode.LowerInvariantCode(), out var unitElement)) {
-                    element = unitElement;
-                } else {
+                if (!lowerCodeDict.TryGetValue(originalCode.LowerInvariantCode(), out element!)) {
                     Console.WriteLine($"<!> 指定した競技に含まれない項目があります {originalCode.RawCode()}");
                 }
             }
 
             if (originalCode.IsSecondHalf()) {
-                programElements.Add(new SecondHalfElement(element));
+                programElements.Add(ElementExtension.ToHalfSecondElement(element));
             } else {
                 programElements.Add(element);
             }
@@ -49,15 +45,15 @@ public class ProgramParser {
         return program.Split("-", StringSplitOptions.RemoveEmptyEntries).Select(x => new ElementCode(x));
     }
 
-    IEnumerable<UnitElement> ToJumpUnitElements(IEnumerable<ElementCode> elementCodes) {
-        var jumpElements = new List<UnitElement>();
+    IEnumerable<IElement> ToJumpUnitElements(IEnumerable<ElementCode> elementCodes) {
+        var jumpElements = new List<IElement>();
         foreach (var jump in elementCodes) {
-            if (lowerCodeDict.TryGetValue(jump.LowerInvariantCode(), out var unitElement)) {
-                if (((IElement)unitElement).ElementType != ElementType.Jump) {
+            if (lowerCodeDict.TryGetValue(jump.LowerInvariantCode(), out var element)) {
+                if (element.ElementType != ElementType.Jump) {
                     Console.WriteLine($"<!> 連続ジャンプにジャンプでない項目がふくまれています {jump.RawCode()}");
                     continue;
                 }
-                jumpElements.Add(unitElement);
+                jumpElements.Add(element);
             } else {
                 Console.WriteLine($"<!> 連続ジャンプに定した競技に含まれない項目があります {jump.RawCode()}");
             }
