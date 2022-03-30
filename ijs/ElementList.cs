@@ -3,15 +3,21 @@
 namespace ijs; 
 
 public class ElementList {
-    List<IElement> list;
+    readonly List<IElement> list;
     public IReadOnlyList<IElement> List => list;
 
     public ElementList() {
         list = new List<IElement>();
     }
     
-    public void Build(params IElement[] elements) {
-        list = elements.ToList();
+    public void AddElement(IElement element) {
+        list.Add(element);
+    }
+    
+    internal void Build(params IElement[] elements) {
+        foreach (var element in elements) {
+            AddElement(element);
+        }
     }
 
     int CountCombinationJumpCountAt(int index) {

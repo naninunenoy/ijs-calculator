@@ -13,14 +13,14 @@ public class ProgramParser {
         // プログラムをコードに分割
         var elementCodes = SplitProgramCodes(programArg);
         // コードを解析
-        var elements = new List<IElement>();
+        var elementList = new ElementList();
         foreach (var code in elementCodes) {
             IElement element = new UnknownElement(code.RawCode());
             if (code.IsCombination(out var jumpElementCodes)) {
                 // 連続ジャンプへの変換
                 try {
                     var (jumpElements, isJumpSequence) = ToJumpElements(jumpElementCodes);
-                    element = isJumpSequence ? jumpElements.AsJumpSequence() : jumpElements.AsCombinationJump();
+                    element = isJumpSequence ? jumpElements.ToJumpSequence() : jumpElements.ToCombinationJump();
                 } catch (Exception e) {
                     Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {code.RawCode()} {e.Message}");
                 }
@@ -33,11 +33,8 @@ public class ProgramParser {
                 }
             }
             // 後半のエレメントか判定して追加
-            elements.Add(code.IsSecondHalf() ? element.AsHalfSecondElement() : element);
+            elementList.AddElement(code.IsSecondHalf() ? element.ToSecondHalfElement() : element);
         }
-
-        var elementList = new ElementList();
-        elementList.Build(elements.ToArray());
         return elementList;
     }
 
