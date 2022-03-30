@@ -12,7 +12,7 @@ public static class ElementTable {
     public static IEnumerable<IElement> PairElementsList => pairElementsDict.Values;
     public static IEnumerable<IElement> IceDanceElementsList => iceDanceElementsDict.Values;
     
-    public static void Initialize(RegionInfo regionInfo) {
+    public static void Build(RegionInfo regionInfo) {
         try {
             CsvDictSet.Build();
             LocalizationsDict.Build();

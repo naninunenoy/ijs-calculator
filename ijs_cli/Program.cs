@@ -44,7 +44,7 @@ rootCommand.Description = "IJS Cli";
 
 rootCommand.SetHandler((string programArgs, string sportType, bool showList) =>
 {
-    ElementTable.Initialize(RegionInfo.CurrentRegion);
+    ElementTable.Build(RegionInfo.CurrentRegion);
     
     if (string.IsNullOrEmpty(programArgs)) {
         if (showList) {
