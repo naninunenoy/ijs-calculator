@@ -15,7 +15,7 @@ public class ElementListExtractor {
     public string Extract() {
         var lines = elementList.List
             .Select((x, i) => {
-                var (isSecondHalf, magnitude) = x.IsHalfSecond();
+                var (isSecondHalf, magnitude) = x.IsSecondHalf();
                 return new Line(i + 1, x.Name, x.FullCode,
                     x is UnknownElement ? "????" : x.BaseValue.ToString("F2", CultureInfo.InvariantCulture),
                     isSecondHalf ? $"後半につき{magnitude:F1}倍加点" : "");
