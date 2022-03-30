@@ -1,6 +1,6 @@
 ﻿namespace ijs.Internal;
 
-internal class CombinationJump : IElement {
+internal class CombinationJump : IJumpSetElement {
     const int maxJumpCount = 3;
     List<IElement> jumps;
     public CombinationJump() {
@@ -24,6 +24,7 @@ internal class CombinationJump : IElement {
     public string FullCode => string.Join("+", jumps.Select(x => x.FullCode));
     public double BaseValue => jumps.Sum(x => x.BaseValue);
     public ElementType ElementType => ElementType.Jump;
+    public int JumpCount => jumps.Count;
 
     public bool Equals(IElement? other) {
         // code(1AとかFCSp4とか)で同一エレメントかを判定

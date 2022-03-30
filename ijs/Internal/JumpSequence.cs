@@ -1,8 +1,7 @@
 ﻿namespace ijs.Internal; 
 
-public class JumpSequence : IElement {
-    public const double Magnification = 0.8;
-    const int maxJumpCount = 3;
+public class JumpSequence : IJumpSetElement {
+    const double magnification = 0.8;
     readonly CombinationJump jumps;
     
     public JumpSequence() {
@@ -14,5 +13,6 @@ public class JumpSequence : IElement {
     public string Name => jumps.Name;
     public string FullCode => $"{jumps.FullCode}+SEQ";
     public ElementType ElementType => jumps.ElementType;
-    public double BaseValue => jumps.BaseValue * Magnification;
+    public double BaseValue => jumps.BaseValue * magnification;
+    public int JumpCount => jumps.JumpCount;
 }

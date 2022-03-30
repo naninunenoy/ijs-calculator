@@ -17,11 +17,28 @@ public static class ElementListExtension {
         var twizzleCount = elementList.TwizzleCount();
         var choreographicElementsCount = elementList.ChoreographicElementsCount();
 
-
         const string header = " *  ";
         if (jumpCount > 0) {
+            stringBuilder.AppendLine($"{header }ジャンプ: {jumpCount}個");
+            const string header2 = "    ";
+            // 後半演技のカウント
             var secondHalfCount = elementList.SecondHalfCount();
-            stringBuilder.AppendLine($"{header}ジャンプ: {jumpCount}個 (その内後半が{secondHalfCount}個)");
+            if (secondHalfCount > 0) {
+                stringBuilder.AppendLine($"{header2}- 後半: {secondHalfCount}個");
+            }
+            // 連続ジャンプのカウント
+            var combinationJumpCount = elementList.CombinationJumpCount();
+            if (combinationJumpCount > 0) {
+                stringBuilder.AppendLine($"{header2}- 連続ジャンプ: {combinationJumpCount}個");
+                var combination2JumpsCount = elementList.Combination2JumpsCount();
+                if (combination2JumpsCount > 0) {
+                    stringBuilder.AppendLine($"{header2}  - 2連続: {combination2JumpsCount}個");
+                }
+                var combination3JumpsCount = elementList.Combination3JumpsCount();
+                if (combination3JumpsCount > 0) {
+                    stringBuilder.AppendLine($"{header2}  - 3連続: {combination3JumpsCount}個");
+                }
+            }
         }
         if (spinCount > 0) {
             stringBuilder.AppendLine($"{header}スピン: {spinCount}個");

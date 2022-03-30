@@ -14,6 +14,17 @@ public class ElementList {
         list = elements.ToList();
     }
 
+    int CountCombinationJumpCountAt(int index) {
+        try {
+            return ((IJumpSetElement)list[index]).JumpCount;
+        } catch {
+            return 0;
+        }
+    }
+
+    public int CombinationJumpCount() => list.Count(x => x is IJumpSetElement { JumpCount: > 1 });
+    public int Combination3JumpsCount() => list.Where((_, i) => CountCombinationJumpCountAt(i) == 3).Count();
+    public int Combination2JumpsCount() => list.Where((_, i) => CountCombinationJumpCountAt(i) == 2).Count();
     public double TotalBaseValue() => list.Select(x => x.BaseValue).Sum();
     public int TotalCount() => list.Count;
     public int SecondHalfCount() => list.Count(x => x is SecondHalfElement);
