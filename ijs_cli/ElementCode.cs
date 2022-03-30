@@ -21,6 +21,8 @@ public class ElementCode {
         return rawString.ToLowerInvariant().LastOrDefault() == 'x';
     }
 
+    public bool IsJumpSequenceCode() => LowerInvariantCode() == "seq";
+    
     public string LowerInvariantCode() => (IsSecondHalf() ? rawString.TrimEnd('x', 'X') : rawString).ToLowerInvariant();
     public string RawCode() => rawString;
 }

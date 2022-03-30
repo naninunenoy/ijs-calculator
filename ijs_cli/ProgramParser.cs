@@ -19,7 +19,8 @@ public class ProgramParser {
             if (code.IsCombination(out var jumpElementCodes)) {
                 // 連続ジャンプへの変換
                 try {
-                    element = ToJumpElements(jumpElementCodes).AsCombinationJump();
+                    var (jumpElements, isJumpSequence) = ToJumpElements(jumpElementCodes);
+                    element = isJumpSequence ? jumpElements.AsJumpSequence() : jumpElements.AsCombinationJump();
                 } catch (Exception e) {
                     Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {code.RawCode()} {e.Message}");
                 }
@@ -44,24 +45,27 @@ public class ProgramParser {
         return program.Split("-", StringSplitOptions.RemoveEmptyEntries).Select(x => new ElementCode(x));
     }
 
-    IEnumerable<IElement> ToJumpElements(IEnumerable<ElementCode> elementCodes) {
+    (IEnumerable<IElement>, bool) ToJumpElements(IEnumerable<ElementCode> elementCodes) {
         var jumpElements = new List<IElement>();
         var errors = new List<string>();
-        foreach (var jump in elementCodes) {
-            if (lowerCodeDict.TryGetValue(jump.LowerInvariantCode(), out var element)) {
-                if (element.ElementType != ElementType.Jump) {
-                    errors.Add($"<!> 連続ジャンプにジャンプでない項目がふくまれています {jump.RawCode()}");
-                    continue;
+        var isJumpSequence = false;
+        foreach (var code in elementCodes) {
+            if (lowerCodeDict.TryGetValue(code.LowerInvariantCode(), out var element)) {
+                if (element.ElementType == ElementType.Jump) {
+                    jumpElements.Add(element);
+                } else {
+                    errors.Add($"<!> 連続ジャンプにジャンプでない項目がふくまれています {code.RawCode()}");
                 }
-                jumpElements.Add(element);
+            } else if (code.IsJumpSequenceCode()) {
+                isJumpSequence = true;
             } else {
-                errors.Add($"<!> 連続ジャンプに指定した競技に含まれない項目があります {jump.RawCode()}");
+                errors.Add($"<!> 連続ジャンプに指定した競技に含まれない項目があります {code.RawCode()}");
             }
         }
         // 全てのコードが連続ジャンプとして正しく解析された場合のみ連続ジャンプとして返す
         if (errors.Any()) {
             throw new ArgumentException($"\n{string.Join("\n", errors)}");
         }
-        return jumpElements;
+        return (jumpElements, isJumpSequence);
     }
 }

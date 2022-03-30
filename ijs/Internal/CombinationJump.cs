@@ -8,7 +8,7 @@ internal class CombinationJump : IElement {
     }
 
     public void Build(params IElement[] jumpElements) {
-        if (jumpElements.Length < 1) {
+        if (jumpElements.Length < 2) {
             throw new ArgumentException("ジャンプの数が足りていません");
         }
         if (jumpElements.Any(x => x.ElementType is not ElementType.Jump)) {

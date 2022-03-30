@@ -1,7 +1,7 @@
 ﻿namespace ijs.Internal;
 
 internal class SecondHalfElement : IElement {
-    public const double Magnification = 1.1F;
+    public const double Magnification = 1.1;
     readonly IElement element;
 
     public SecondHalfElement(IElement element) {
