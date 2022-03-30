@@ -1,10 +1,9 @@
 ﻿namespace ijs.Internal;
 
-internal class ContinuousJumps : IElement {
+internal class CombinationJump : IElement {
     const int maxJumpCount = 3;
-    public IReadOnlyList<IElement> Jumps => jumps;
     List<IElement> jumps;
-    public ContinuousJumps() {
+    public CombinationJump() {
         jumps = new List<IElement>();
     }
 
@@ -23,9 +22,7 @@ internal class ContinuousJumps : IElement {
 
     public string Name => string.Join(" + ", jumps.Select(x => x.Name));
     public string FullCode => string.Join("+", jumps.Select(x => x.FullCode));
-    public double BaseValue => jumps
-        .Select(x => x.BaseValue)
-        .Sum();
+    public double BaseValue => jumps.Sum(x => x.BaseValue);
     public ElementType ElementType => ElementType.Jump;
 
     public bool Equals(IElement? other) {

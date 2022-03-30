@@ -10,8 +10,8 @@ public static class ElementExtension {
     public static (bool, double) IsHalfSecond(this IElement element) {
         return (element is SecondHalfElement, SecondHalfElement.Magnification);
     }
-    public static IElement AsContinuousJumps(this IEnumerable<IElement> jumps) {
-        var continuousJumps = new ContinuousJumps();
+    public static IElement AsCombinationJump(this IEnumerable<IElement> jumps) {
+        var continuousJumps = new CombinationJump();
         continuousJumps.Build(jumps.ToArray());
         return continuousJumps;
     }

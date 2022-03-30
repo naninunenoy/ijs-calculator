@@ -16,10 +16,10 @@ public class ProgramParser {
         var elements = new List<IElement>();
         foreach (var code in elementCodes) {
             IElement element = new UnknownElement(code.RawCode());
-            if (code.IsContinuousJump(out var jumpElementCodes)) {
+            if (code.IsCombination(out var jumpElementCodes)) {
                 // 連続ジャンプへの変換
                 try {
-                    element = ToJumpElements(jumpElementCodes).AsContinuousJumps();
+                    element = ToJumpElements(jumpElementCodes).AsCombinationJump();
                 } catch (Exception e) {
                     Console.WriteLine($"<!> 連続ジャンプの解析に失敗しました {code.RawCode()} {e.Message}");
                 }

@@ -6,14 +6,14 @@ public class ElementCode {
         this.rawString = rawString;
     }
 
-    public bool IsContinuousJump(out ElementCode[] jumps) {
+    public bool IsCombination(out ElementCode[] elementCodes) {
         var codes = rawString.Split("+", StringSplitOptions.RemoveEmptyEntries);
         // 「連続」ジャンプとは2回以上
         if (codes.Length < 2) {
-            jumps = Array.Empty<ElementCode>();
+            elementCodes = Array.Empty<ElementCode>();
             return false;
         }
-        jumps = codes.Select(x => new ElementCode(x)).ToArray();
+        elementCodes = codes.Select(x => new ElementCode(x)).ToArray();
         return true;
     }
 

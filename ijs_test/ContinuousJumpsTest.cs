@@ -15,21 +15,21 @@ public class ContinuousJumpsTest {
 
     [Fact]
     public void BuildTest_ジャンプでないエレメンツが含まれています() {
-        var jumps = new ContinuousJumps();
+        var jumps = new CombinationJump();
         var ex = Assert.Throws<ArgumentException>(() => { jumps.Build(spin); });
         Assert.Equal("ジャンプでないエレメンツが含まれています", ex.Message);
     }
 
     [Fact]
     public void BuildTest_連続ジャンプは最高3回です() {
-        var jumps = new ContinuousJumps();
+        var jumps = new CombinationJump();
         var ex = Assert.Throws<ArgumentException>(() => { jumps.Build(jump0, jump1, jump2, jump3); });
         Assert.Equal("連続ジャンプは最高3回です", ex.Message);
     }
     
     [Fact]
     public void EmptyTest() {
-        var emptyJumps = new ContinuousJumps();
+        var emptyJumps = new CombinationJump();
         Assert.Equal("", emptyJumps.Name);
         Assert.Equal("", emptyJumps.FullCode);
         Assert.Equal(0F, emptyJumps.BaseValue);
@@ -38,7 +38,7 @@ public class ContinuousJumpsTest {
     
     [Fact]
     public void ParamsTest() {
-        var jumps = new ContinuousJumps();
+        var jumps = new CombinationJump();
         jumps.Build(jump0, jump1, jump2);
         Assert.Equal("ジャンプ0+ジャンプ1+ジャンプ2", jumps.Name);
         Assert.Equal("Jump0+Jump1+Jump2", jumps.FullCode);
