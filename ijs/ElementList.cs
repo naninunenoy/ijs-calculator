@@ -21,14 +21,24 @@ public class ElementList {
     }
 
     int CountCombinationJumpCountAt(int index) {
+        if (index < 0 || list.Count <= index) {
+            return 0;
+        }
+
+        var element = list[index];
+        if (element is SecondHalfElement secondHalfElement) {
+            // 後半演技かつ連続ジャンプの場合両方の要素を取り出す必要がある
+            element = secondHalfElement.OriginalElement;
+        }
+        
         try {
-            return ((IJumpSetElement)list[index]).JumpCount;
+            return ((IJumpSetElement)element).JumpCount;
         } catch {
             return 0;
         }
     }
 
-    public int CombinationJumpCount() => list.Count(x => x is IJumpSetElement { JumpCount: > 1 });
+    public int CombinationJumpCount() => list.Where((_,i) => CountCombinationJumpCountAt(i) > 1).Count();
     public int Combination3JumpsCount() => list.Where((_, i) => CountCombinationJumpCountAt(i) == 3).Count();
     public int Combination2JumpsCount() => list.Where((_, i) => CountCombinationJumpCountAt(i) == 2).Count();
     public double TotalBaseValue() => list.Select(x => x.BaseValue).Sum();

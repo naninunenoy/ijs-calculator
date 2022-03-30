@@ -2,19 +2,19 @@
 
 internal class SecondHalfElement : IElement {
     public const double Magnification = 1.1;
-    readonly IElement element;
 
     public SecondHalfElement(IElement element) {
-        this.element = element;
+        this.OriginalElement = element;
     }
 
     public bool Equals(IElement? other) {
-        return element.Equals(other);
+        return OriginalElement.Equals(other);
     }
 
-    public string Name => element.Name;
-    public string FullCode => element.FullCode;
-    public ElementType ElementType => element.ElementType;
+    public string Name => OriginalElement.Name;
+    public string FullCode => OriginalElement.FullCode;
+    public ElementType ElementType => OriginalElement.ElementType;
     public double BaseValue =>
-        element.ElementType == ElementType.Jump ? element.BaseValue * Magnification : element.BaseValue;
+        OriginalElement.ElementType == ElementType.Jump ? OriginalElement.BaseValue * Magnification : OriginalElement.BaseValue;
+    public IElement OriginalElement { get; }
 }
