@@ -1,4 +1,6 @@
-﻿namespace ijs.Internal;
+﻿using System.Text;
+
+namespace ijs.Internal;
 
 internal static class CsvDictSet {
     static readonly CsvDict SingleJumpDict;
@@ -85,12 +87,30 @@ internal static class CsvDictSet {
         yield return (PairThrowJumpDict, PairCsvText.ThrowJumpCsv);
         yield return (PairDeathSpiralDict, PairCsvText.DeathSpiralLiftCsv);
         yield return (PairSpinDict, PairCsvText.SpinCsv);
-        yield return (IceDancePatternDanceDict, IceDanceCsvText.PatternDanceCsv);
+        yield return (IceDancePatternDanceDict, ConcatCsv(
+            IceDanceCsvText.PatternDanceWithKeyPointCsv,
+            IceDanceCsvText.PatternDanceWithoutKeyPointCsv,
+            IceDanceCsvText.RhythmFreeDanceCsv));
         yield return (IceDanceSpinDict, IceDanceCsvText.SpinCsv);
         yield return (IceDanceLiftDict, IceDanceCsvText.LiftCsv);
-        yield return (IceDanceTwizzleDict, IceDanceCsvText.TwizzleCsv);
-        yield return (IceDanceStepSequenceDict, IceDanceCsvText.StepSequenceCsv);
+        yield return (IceDanceTwizzleDict, ConcatCsv(
+            IceDanceCsvText.SequentialTwizzleCsv,
+            IceDanceCsvText.SynchronizedTwizzleCsv));
+        yield return (IceDanceStepSequenceDict,ConcatCsv(
+            IceDanceCsvText.OneFootStepSequenceCsv,
+            IceDanceCsvText.StepSequenceCsv));
         yield return (IceDanceChoreographicElementsDict, IceDanceCsvText.ChoreographicElementsCsv);
+    }
+
+    static string ConcatCsv(params string[] csv) {
+        var stringBuilder = new StringBuilder(csv[0]);
+        foreach (var text in csv.Skip(1)) { //　最初のcsvは初期値で食わせている
+            var lines = text.Split(Environment.NewLine);
+            foreach (var line in lines.Skip(1)) { // 最初のタイトル行は無視
+                stringBuilder.AppendLine(line);
+            }
+        }
+        return stringBuilder.ToString();
     }
     
     static IEnumerable<CsvDict> SingleDictAsEnumerable() {

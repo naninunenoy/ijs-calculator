@@ -68,36 +68,36 @@ public class ElementIdTableTest {
     [Fact]
     public void IceDancePatternDanceElementsIdsTest() {
         var ids = ElementIdTable.IceDancePatternDanceElementsIds();
-        Assert.Equal(3*4, ids.Count());
+        Assert.Equal(654, ids.Count());
     }
 
     [Fact]
     public void IceDanceSpinElementsIdsTest() {
         var ids = ElementIdTable.IceDanceSpinElementsIds();
-        Assert.Equal(2*4, ids.Count());
+        Assert.Equal(2*5, ids.Count());
     }
 
     [Fact]
     public void IceDanceLiftElementsIdsTest() {
         var ids = ElementIdTable.IceDanceLiftElementsIds();
-        Assert.Equal(4*4, ids.Count());
+        Assert.Equal(4*5, ids.Count());
     }
 
     [Fact]
     public void IceDanceTwizzleElementsIdsTest() {
         var ids = ElementIdTable.IceDanceTwizzleElementsIds();
-        Assert.Equal(4, ids.Count());
+        Assert.Equal(4*5, ids.Count());
     }
 
     [Fact]
     public void IceDanceStepSequenceElementsIdsTest() {
         var ids = ElementIdTable.IceDanceStepSequenceElementsIds();
-        Assert.Equal(7*5, ids.Count());
+        Assert.Equal(4*5, ids.Count());
     }
 
     [Fact]
     public void IceDanceChoreographicElementsIdsTest() {
         var ids = ElementIdTable.IceDanceChoreographicElementsIds();
-        Assert.Equal(3, ids.Count());
+        Assert.Equal(5, ids.Count());
     }
 }
