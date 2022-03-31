@@ -220,6 +220,31 @@ public class ElementListTest {
         Assert.Equal(0, list.TwizzleCount());
         Assert.Equal(1, list.ChoreographicElementsCount());
     }
+
+    [Fact]
+    public void CombinationJumpCountTest() {
+        var list = new ElementList();
+        var combinationJump = new CombinationJump();
+        combinationJump.Build(jump, jump);
+        var jumpSequence = new JumpSequence();
+        jumpSequence.Build(jump, jump);
+        list.AddElement(combinationJump);
+        list.AddElement(jumpSequence);
+        Assert.Equal(2, list.CombinationJumpCount());
+    }
+    
+    [Fact]
+    public void CombinationJumpsCountTest() {
+        var list = new ElementList();
+        var combinationJump2 = new CombinationJump();
+        combinationJump2.Build(jump, jump);
+        var combinationJump3 = new CombinationJump();
+        combinationJump3.Build(jump, jump, jump);
+        list.AddElement(combinationJump2);
+        list.AddElement(combinationJump3);
+        Assert.Equal(1, list.Combination2JumpsCount());
+        Assert.Equal(1, list.Combination3JumpsCount());
+    }
 }
 
 internal static class ElementListTestExtension {

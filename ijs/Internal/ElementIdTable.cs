@@ -1,11 +1,11 @@
 ﻿namespace ijs.Internal;
 
 internal static class ElementIdTable {
-    static readonly ElementLevel[] LevelAll = ((ElementLevel[])Enum.GetValues(typeof(ElementLevel)))
+    static readonly ElementLevel[] LevelB1234 = ((ElementLevel[])Enum.GetValues(typeof(ElementLevel)))
         .Where(lv => lv is not ElementLevel.None)
         .ToArray();
     
-    static readonly ElementLevel[] Level1234 = LevelAll
+    static readonly ElementLevel[] Level1234 = LevelB1234
         .Where(lv => lv is not ElementLevel.LvB)
         .ToArray();
 
@@ -20,7 +20,7 @@ internal static class ElementIdTable {
         return SingleElementCodeExtensions
             .AllEnums()
             .Where(x => x.IsSpin())
-            .SelectMany(code => code.WithLevelElementLevel(LevelAll));
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
 
     public static IEnumerable<ElementId> SingleStepSequenceElementsIds() {
@@ -30,7 +30,7 @@ internal static class ElementIdTable {
             .SelectMany(code => {
                 // StSq の場合はレベル分けがあるが ChSq にはない
                 return code is SingleElementCode.StSq
-                    ? SingleElementCode.StSq.WithLevelElementLevel(LevelAll)
+                    ? SingleElementCode.StSq.WithLevelElementLevel(LevelB1234)
                     : new[] { new ElementId(SingleElementCode.ChSq) };
             });
     }
@@ -49,7 +49,7 @@ internal static class ElementIdTable {
             .SelectMany(code => {
                 // StSq の場合はレベル分けがあるが ChSq にはない
                 return code is PairElementCode.StSq
-                    ? PairElementCode.StSq.WithLevelElementLevel(LevelAll)
+                    ? PairElementCode.StSq.WithLevelElementLevel(LevelB1234)
                     : new[] { new ElementId(PairElementCode.ChSq) };
             });
     }
@@ -58,14 +58,14 @@ internal static class ElementIdTable {
         return PairElementCodeExtensions
             .AllEnums()
             .Where(x => x.IsLift())
-            .SelectMany(code => code.WithLevelElementLevel(LevelAll));
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
     
     public static IEnumerable<ElementId> PairTwistLiftElementsIds() {
         return PairElementCodeExtensions
             .AllEnums()
             .Where(x => x.IsTwistLift())
-            .SelectMany(code => code.WithLevelElementLevel(LevelAll));
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
 
     public static IEnumerable<ElementId> PairThrowJumpElementsIds() {
@@ -83,7 +83,7 @@ internal static class ElementIdTable {
                 // PiF のみレベル分けがない
                 return code is PairElementCode.PiF
                     ? new[] { new ElementId(PairElementCode.PiF) }
-                    : code.WithLevelElementLevel(LevelAll);
+                    : code.WithLevelElementLevel(LevelB1234);
             });
     }
 
@@ -91,7 +91,7 @@ internal static class ElementIdTable {
         return PairElementCodeExtensions
             .AllEnums()
             .Where(x => x.IsSpin())
-            .SelectMany(code => code.WithLevelElementLevel(LevelAll));
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
 
     public static IEnumerable<ElementId> IceDancePatternDanceElementsIds() {
@@ -126,7 +126,7 @@ internal static class ElementIdTable {
         return IceDanceElementsCodeExtensions
             .AllEnums()
             .Where(x => x.IsStepSequence())
-            .SelectMany(code => code.WithLevelElementLevel(LevelAll));
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
 
     public static IEnumerable<ElementId> IceDanceChoreographicElementsIds() {

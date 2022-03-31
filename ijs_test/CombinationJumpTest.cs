@@ -6,7 +6,7 @@ using Xunit;
 
 namespace ijs_test;
 
-public class ContinuousJumpsTest {
+public class CombinationJumpTest {
     readonly IElement jump0 = new TestElement("ジャンプ0", "Jump0", ElementType.Jump, 1);
     readonly IElement jump1 = new TestElement("ジャンプ1", "Jump1", ElementType.Jump, 10F);
     readonly IElement jump2 = new TestElement("ジャンプ2", "Jump2", ElementType.Jump, 100F);
@@ -40,7 +40,7 @@ public class ContinuousJumpsTest {
     public void ParamsTest() {
         var jumps = new CombinationJump();
         jumps.Build(jump0, jump1, jump2);
-        Assert.Equal("ジャンプ0+ジャンプ1+ジャンプ2", jumps.Name);
+        Assert.Equal("ジャンプ0 + ジャンプ1 + ジャンプ2", jumps.Name);
         Assert.Equal("Jump0+Jump1+Jump2", jumps.FullCode);
         Assert.Equal(111, jumps.BaseValue);
         Assert.Equal(ElementType.Jump, jumps.ElementType);
