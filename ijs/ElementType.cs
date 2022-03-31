@@ -36,6 +36,7 @@ public enum ElementType {
     /// パターンダンス
     /// </summary>
     PatternDance,
+    PatternDanceWithKeyPoint,
     /// <summary>
     /// ツイズル
     /// </summary>

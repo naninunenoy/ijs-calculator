@@ -93,12 +93,8 @@ internal static class ElementIdTable {
             .Where(x => x.IsSpin())
             .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
-
+    
     public static IEnumerable<ElementId> IceDancePatternDanceElementsIds() {
-        var withKp = IceDanceElementsCodeExtensions
-            .AllEnums()
-            .Where(x => x.IsPatternDance(true))
-            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
         var withoutKp = IceDanceElementsCodeExtensions
             .AllEnums()
             .Where(x => x.IsPatternDance(false))
@@ -107,7 +103,14 @@ internal static class ElementIdTable {
             .AllEnums()
             .Where(x => x.IsPatternDance(null))
             .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
-        return withKp.Concat(withoutKp).Concat(others);
+        return withoutKp.Concat(others);
+    }
+    
+    public static IEnumerable<ElementId> IceDancePatternDanceWithKeyPointElementsIds() {
+        return IceDanceElementsCodeExtensions
+            .AllEnums()
+            .Where(x => x.IsPatternDance(true))
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
     
     public static IEnumerable<ElementId> IceDanceSpinElementsIds() {

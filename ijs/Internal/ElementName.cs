@@ -12,6 +12,6 @@ internal readonly struct ElementName {
     }
 
     public string GetNameOf(RegionInfo regionInfo) {
-        return regionInfo.Name is "JP" or "JPN" ? ja : en;
+        return regionInfo.Name is "JP" or "JPN" && !string.IsNullOrEmpty(ja) ? ja : en;
     }
 }
