@@ -11,7 +11,7 @@ public class TotalBaseValueCalculator {
         this.programRawArg = programRawArg;
     }
 
-    public (TotalBaseValue totalBaseValue, string description) Calculate() {
+    public (string totalBaseValueStr, string description) Calculate() {
         var allElements = sportsType.ToLowerInvariant() switch {
             "single" => ElementTable.SingleElementsList,
             "pair" => ElementTable.PairElementsList,
@@ -27,6 +27,6 @@ public class TotalBaseValueCalculator {
         if (elementList.List.All(x => x is UnknownElement)) {
             throw new ArgumentException($"得点を計算可能なエレメントがありませんでした\n{extractor.Extract()}");
         }
-        return (new TotalBaseValue(elementList.TotalBaseValue()), extractor.Extract());
+        return (elementList.TotalBaseValue().Item2, extractor.Extract());
     }
 }

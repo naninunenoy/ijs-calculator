@@ -58,7 +58,7 @@ rootCommand.SetHandler((string programArgs, string sportType, bool showList) =>
 
     var calc = new TotalBaseValueCalculator(sportType, programArgs);
     var success = false;
-    TotalBaseValue totalBaseValue = default;
+    var totalBaseValue = "???";
     string description;
     try {
         (totalBaseValue, description) = calc.Calculate();

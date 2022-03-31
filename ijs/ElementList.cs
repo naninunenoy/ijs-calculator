@@ -13,12 +13,6 @@ public class ElementList {
     public void AddElement(IElement element) {
         list.Add(element);
     }
-    
-    internal void Build(params IElement[] elements) {
-        foreach (var element in elements) {
-            AddElement(element);
-        }
-    }
 
     int CountCombinationJumpCountAt(int index) {
         if (index < 0 || list.Count <= index) {
@@ -41,7 +35,12 @@ public class ElementList {
     public int CombinationJumpCount() => list.Where((_,i) => CountCombinationJumpCountAt(i) > 1).Count();
     public int Combination3JumpsCount() => list.Where((_, i) => CountCombinationJumpCountAt(i) == 3).Count();
     public int Combination2JumpsCount() => list.Where((_, i) => CountCombinationJumpCountAt(i) == 2).Count();
-    public double TotalBaseValue() => list.Select(x => x.BaseValue).Sum();
+    public (double, string) TotalBaseValue() {
+        var sum = list.Select(x => x.BaseValue).Sum();
+        // sum は既に掛け算の結果が四捨五入された値の合計である想定
+        return (sum, BaseValueRounder.GetRoundF2String(sum));
+    }
+
     public int TotalCount() => list.Count;
     public int SecondHalfCount() => list.Count(x => x is SecondHalfElement);
     public int JumpCount() => list.Count(x => x.ElementType is ElementType.Jump);

@@ -13,6 +13,6 @@ public class JumpSequence : IJumpSetElement {
     public string Name => jumps.Name;
     public string FullCode => $"{jumps.FullCode}+SEQ";
     public ElementType ElementType => jumps.ElementType;
-    public double BaseValue => jumps.BaseValue * magnification;
+    public double BaseValue => BaseValueRounder.MultipleBaseValue(jumps.BaseValue, magnification);
     public int JumpCount => jumps.JumpCount;
 }

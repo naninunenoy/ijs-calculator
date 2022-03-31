@@ -3,7 +3,7 @@ using ijs.Internal;
 using ijs_test.TestDriver;
 using Xunit;
 
-namespace ijs_test; 
+namespace ijs_test;
 
 public class ElementListTest {
     readonly IElement jump = new TestElement("ジャンプ", "Jump", ElementType.Jump, 1);
@@ -56,7 +56,9 @@ public class ElementListTest {
         var list = new ElementList();
         list.Build(jump, spin, stepSequence, lift, twistLift, throwJump, deathSpiral, patternDance, twizzle,
             choreographicElement);
-        Assert.Equal(1111111111, list.TotalBaseValue());
+        var (value, str) = list.TotalBaseValue();
+        Assert.Equal(1111111111.0, value);
+        Assert.Equal("1111111111.00", str);
     }
 
     [Fact]
@@ -217,5 +219,13 @@ public class ElementListTest {
         Assert.Equal(0, list.PatternDanceCount());
         Assert.Equal(0, list.TwizzleCount());
         Assert.Equal(1, list.ChoreographicElementsCount());
+    }
+}
+
+internal static class ElementListTestExtension {
+    public static void Build(this ElementList elementList, params IElement[] elements) {
+        foreach (var element in elements) {
+            elementList.AddElement(element);
+        }
     }
 }

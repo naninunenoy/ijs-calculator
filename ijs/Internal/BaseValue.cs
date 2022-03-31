@@ -10,8 +10,4 @@ internal readonly struct BaseValue {
     internal BaseValue(double value) {
         this.value = value;
     }
-
-    public override string ToString() {
-        return $"value={value.ToString(CultureInfo.InvariantCulture)}";
-    }
 }
