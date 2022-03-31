@@ -4,13 +4,11 @@ internal class ElementCodeSet : IEquatable<ElementCodeSet> {
     SingleElementCode SingleElementCode { get; }
     PairElementCode PairElementCode { get; }
     IceDanceElementCode IceDanceElementCode { get; }
-    IceDanceElementCode2 IceDanceElementCode2 { get; }
 
     ElementCodeSet() {
         SingleElementCode = SingleElementCode.Undefined;
         PairElementCode = PairElementCode.Undefined;
         IceDanceElementCode = IceDanceElementCode.Undefined;
-        IceDanceElementCode2 = IceDanceElementCode2.Undefined;
     }
 
     internal ElementCodeSet(SingleElementCode code) : this() {
@@ -25,10 +23,6 @@ internal class ElementCodeSet : IEquatable<ElementCodeSet> {
         IceDanceElementCode = code;
     }
     
-    internal ElementCodeSet(IceDanceElementCode2 code) : this() {
-        IceDanceElementCode2 = code;
-    }
-
     public override string ToString() {
         if (SingleElementCode is not SingleElementCode.Undefined) {
             return SingleElementCode.ToString().TrimStart('_');
@@ -37,10 +31,7 @@ internal class ElementCodeSet : IEquatable<ElementCodeSet> {
             return PairElementCode.ToString().TrimStart('_');
         }
         if (IceDanceElementCode is not IceDanceElementCode.Undefined) {
-            return IceDanceElementCode.ToString().TrimStart('_');
-        }
-        if (IceDanceElementCode2 is not IceDanceElementCode2.Undefined) {
-            return IceDanceElementCode2.ToString().TrimStart('_').Replace("kp", "");
+            return IceDanceElementCode.ToString().TrimStart('_').Replace("kp", "");
         }
         return "Undefined";
     }
@@ -50,7 +41,6 @@ internal class ElementCodeSet : IEquatable<ElementCodeSet> {
         if (ReferenceEquals(this, other)) return true;
         return PairElementCode == other.PairElementCode && 
                IceDanceElementCode == other.IceDanceElementCode &&
-               IceDanceElementCode2 == other.IceDanceElementCode2 &&
                SingleElementCode == other.SingleElementCode;
     }
 
@@ -62,6 +52,6 @@ internal class ElementCodeSet : IEquatable<ElementCodeSet> {
     }
 
     public override int GetHashCode() {
-        return HashCode.Combine((int)PairElementCode, (int)IceDanceElementCode, (int)IceDanceElementCode2, (int)SingleElementCode);
+        return HashCode.Combine((int)PairElementCode, (int)IceDanceElementCode, (int)SingleElementCode);
     }
 }

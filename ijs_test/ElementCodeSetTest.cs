@@ -16,7 +16,7 @@ public class ElementCodeSetTest {
     }
     [Fact]
     public void IceDanceCodeToStringTest() {
-        var x = new ElementCodeSet(IceDanceElementCode2.kpFO1Sq);
+        var x = new ElementCodeSet(IceDanceElementCode.kpFO1Sq);
         Assert.Equal("FO1Sq", x.ToString());
     }
 }

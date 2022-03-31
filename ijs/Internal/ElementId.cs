@@ -23,11 +23,6 @@ internal readonly struct ElementId : IEquatable<ElementId> {
         Code = new ElementCodeSet(code);
     }
     
-    internal ElementId(IceDanceElementCode2 code, ElementLevel level = ElementLevel.None) {
-        Level = level;
-        Code = new ElementCodeSet(code);
-    }
-    
     public bool Equals(ElementId other) {
         return Level == other.Level && Code.Equals(other.Code);
     }
