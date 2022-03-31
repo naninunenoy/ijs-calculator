@@ -5,8 +5,8 @@ internal static class ElementIdTable {
         .Where(lv => lv is not ElementLevel.None)
         .ToArray();
     
-    static readonly ElementLevel[] Level1234 = LevelB1234
-        .Where(lv => lv is not ElementLevel.LvB)
+    static readonly ElementLevel[] LevelB1 = LevelB1234
+        .Where(lv => lv is not ElementLevel.Lv3 or ElementLevel.Lv4)
         .ToArray();
 
     public static IEnumerable<ElementId> SingleJumpElementsIds() {
@@ -95,42 +95,51 @@ internal static class ElementIdTable {
     }
 
     public static IEnumerable<ElementId> IceDancePatternDanceElementsIds() {
-        return IceDanceElementsCodeExtensions
+        var withKp = IceDanceElementsCode2Extensions
             .AllEnums()
-            .Where(x => x.IsPatternDance())
-            .SelectMany(code => code.WithLevelElementLevel(Level1234));
+            .Where(x => x.IsPatternDance(true))
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
+        var withoutKp = IceDanceElementsCode2Extensions
+            .AllEnums()
+            .Where(x => x.IsPatternDance(false))
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1));
+        var others = IceDanceElementsCode2Extensions
+            .AllEnums()
+            .Where(x => x.IsPatternDance(null))
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
+        return withKp.Concat(withoutKp).Concat(others);
     }
     
     public static IEnumerable<ElementId> IceDanceSpinElementsIds() {
-        return IceDanceElementsCodeExtensions
+        return IceDanceElementsCode2Extensions
             .AllEnums()
             .Where(x => x.IsSpin())
-            .SelectMany(code => code.WithLevelElementLevel(Level1234));
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
     
     public static IEnumerable<ElementId> IceDanceLiftElementsIds() {
-        return IceDanceElementsCodeExtensions
+        return IceDanceElementsCode2Extensions
             .AllEnums()
-            .Where(x => x.IsList())
-            .SelectMany(code => code.WithLevelElementLevel(Level1234));
+            .Where(x => x.IsLift())
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
     
     public static IEnumerable<ElementId> IceDanceTwizzleElementsIds() {
-        return IceDanceElementsCodeExtensions
+        return IceDanceElementsCode2Extensions
             .AllEnums()
             .Where(x => x.IsTwizzle())
-            .SelectMany(code => code.WithLevelElementLevel(Level1234));
+            .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
 
     public static IEnumerable<ElementId> IceDanceStepSequenceElementsIds() {
-        return IceDanceElementsCodeExtensions
+        return IceDanceElementsCode2Extensions
             .AllEnums()
             .Where(x => x.IsStepSequence())
             .SelectMany(code => code.WithLevelElementLevel(LevelB1234));
     }
 
     public static IEnumerable<ElementId> IceDanceChoreographicElementsIds() {
-        return IceDanceElementsCodeExtensions
+        return IceDanceElementsCode2Extensions
             .AllEnums()
             .Where(x => x.IsChoreographicElements())
             .Select(code => new ElementId(code));
