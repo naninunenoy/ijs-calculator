@@ -29,7 +29,7 @@ public enum ElementType {
     /// </summary>
     ThrowJump,
     /// <summary>
-    /// デススピン
+    /// デススパイラル
     /// </summary>
     DeathSpiral,
     /// <summary>
