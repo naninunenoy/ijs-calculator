@@ -44,3 +44,8 @@ dotnet run --project ijs_cli -- --program 4S-4T+3T-CCSp4-3Ax-FSSp4-StSq3-CCoSp4
  *  ステップシークエンス: 1個
 =====================================================
 ```
+
+GitHub上ではズレていますが [EastAsianWidthDotNet](https://github.com/nuitsjp/EastAsianWidthDotNet) のおかげでターミナル上では揃うはずです。
+
+# LICENSE
+MIT
