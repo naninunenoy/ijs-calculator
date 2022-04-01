@@ -12,7 +12,7 @@
 1. GitHubからクローンします。
 
 ```
-git clone git@github.com:naninunenoy/ijs.git
+git clone git@github.com:naninunenoy/ijs-calculator.git
 ```
 
 2. プログラムを指定し、コマンドを実行してください。
