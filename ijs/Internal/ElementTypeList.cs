@@ -12,7 +12,6 @@ internal static class ElementTypeList {
     public static readonly SportsElementType PairDeathSpiral = new(SportsType.Pair, ElementType.DeathSpiral);
     public static readonly SportsElementType PairSpin = new(SportsType.Pair, ElementType.Spin);
     public static readonly SportsElementType IceDancePatternDance = new(SportsType.IceDance, ElementType.PatternDance);
-    public static readonly SportsElementType IceDancePatternDanceWithKeyPoint= new(SportsType.IceDance, ElementType.PatternDanceWithKeyPoint);
     public static readonly SportsElementType IceDanceSpin = new(SportsType.IceDance, ElementType.Spin);
     public static readonly SportsElementType IceDanceLift = new(SportsType.IceDance, ElementType.Lift);
     public static readonly SportsElementType IceDanceTwizzle = new(SportsType.IceDance, ElementType.Twizzle);

@@ -14,7 +14,6 @@ internal static class CsvDictSet {
     static readonly CsvDict PairDeathSpiralDict;
     static readonly CsvDict PairSpinDict;
     static readonly CsvDict IceDancePatternDanceDict;
-    static readonly CsvDict IceDancePatternDanceWithKeyPointDict;
     static readonly CsvDict IceDanceSpinDict;
     static readonly CsvDict IceDanceLiftDict;
     static readonly CsvDict IceDanceTwizzleDict;
@@ -33,7 +32,6 @@ internal static class CsvDictSet {
         PairDeathSpiralDict = new CsvDict("code");
         PairSpinDict = new CsvDict("code");
         IceDancePatternDanceDict = new CsvDict("code");
-        IceDancePatternDanceWithKeyPointDict = new CsvDict("code");
         IceDanceSpinDict = new CsvDict("code");
         IceDanceLiftDict = new CsvDict("code");
         IceDanceTwizzleDict = new CsvDict("code");
@@ -89,12 +87,14 @@ internal static class CsvDictSet {
         yield return (PairThrowJumpDict, PairCsvText.ThrowJumpCsv);
         yield return (PairDeathSpiralDict, PairCsvText.DeathSpiralLiftCsv);
         yield return (PairSpinDict, PairCsvText.SpinCsv);
-        yield return (IceDancePatternDanceDict, ConcatCsv( IceDanceCsvText.PatternDanceWithoutKeyPointCsv, IceDanceCsvText.RhythmFreeDanceCsv));
-        yield return (IceDancePatternDanceWithKeyPointDict, IceDanceCsvText.PatternDanceWithKeyPointCsv);
+        yield return (IceDancePatternDanceDict, ConcatCsv(
+            IceDanceCsvText.PatternDanceWithKeyPointCsv,
+            IceDanceCsvText.PatternDanceWithoutKeyPointCsv,
+            IceDanceCsvText.RhythmFreeDanceCsv));
         yield return (IceDanceSpinDict, IceDanceCsvText.SpinCsv);
         yield return (IceDanceLiftDict, IceDanceCsvText.LiftCsv);
-        yield return (IceDanceTwizzleDict, ConcatCsv( IceDanceCsvText.SequentialTwizzleCsv, IceDanceCsvText.SynchronizedTwizzleCsv));
-        yield return (IceDanceStepSequenceDict,ConcatCsv( IceDanceCsvText.OneFootStepSequenceCsv, IceDanceCsvText.StepSequenceCsv));
+        yield return (IceDanceTwizzleDict, ConcatCsv(IceDanceCsvText.SequentialTwizzleCsv, IceDanceCsvText.SynchronizedTwizzleCsv));
+        yield return (IceDanceStepSequenceDict,ConcatCsv(IceDanceCsvText.OneFootStepSequenceCsv, IceDanceCsvText.StepSequenceCsv));
         yield return (IceDanceChoreographicElementsDict, IceDanceCsvText.ChoreographicElementsCsv);
     }
 

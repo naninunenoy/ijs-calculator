@@ -29,7 +29,7 @@ internal class CsvDict {
         // 指定したタイトルとキーにした辞書作成
         foreach (var line in lines.Skip(1)) {
             var commaSeparatedValues = line.Split(',');
-            valuesDict.Add(commaSeparatedValues[keyTitleIndex], commaSeparatedValues);
+            valuesDict.TryAdd(commaSeparatedValues[keyTitleIndex], commaSeparatedValues);
         }
     }
 

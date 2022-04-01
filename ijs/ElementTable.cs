@@ -35,12 +35,12 @@ public static class ElementTable {
             .ToDictionary(x => x.Id);
         iceDanceElementsDict = ConcatUnitElements(
                 ToElements(ElementTypeList.IceDancePatternDance, ElementIdTable.IceDancePatternDanceElementsIds(), regionInfo),
-                ToElements(ElementTypeList.IceDancePatternDanceWithKeyPoint, ElementIdTable.IceDancePatternDanceWithKeyPointElementsIds(), regionInfo),
                 ToElements(ElementTypeList.IceDanceSpin, ElementIdTable.IceDanceSpinElementsIds(), regionInfo),
                 ToElements(ElementTypeList.IceDanceLift, ElementIdTable.IceDanceLiftElementsIds(), regionInfo),
                 ToElements(ElementTypeList.IceDanceTwizzle, ElementIdTable.IceDanceTwizzleElementsIds(), regionInfo),
                 ToElements(ElementTypeList.IceDanceStepSequence, ElementIdTable.IceDanceStepSequenceElementsIds(), regionInfo),
                 ToElements(ElementTypeList.IceDanceChoreographicElement, ElementIdTable.IceDanceChoreographicElementsIds(), regionInfo))
+            .Distinct() //KeyPoint有無で衝突するので重複を無視
             .ToDictionary(x => x.Id);
     }
     

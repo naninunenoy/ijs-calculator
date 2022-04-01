@@ -183,12 +183,19 @@ internal static class IceDanceElementsCodeExtensions {
     public static IEnumerable<ElementId> WithLevelElementLevel(this IceDanceElementCode code, params ElementLevel[] levels) {
         return levels.Select(x => new ElementId(code, x));
     }
-    public static bool IsPatternDance(this IceDanceElementCode code, bool? isWithKeyPoint) {
-        return isWithKeyPoint switch {
-            true => code is >= IceDanceElementCode.kpFO1Sq and <= IceDanceElementCode.kpBL3Sq,
-            false => code is >= IceDanceElementCode.FO1Sq and <= IceDanceElementCode.MB2Sq2Se,
-            _ => code is >= IceDanceElementCode._1TTF and <= IceDanceElementCode.PStM
-        };
+    public static bool IsPatternDance(this IceDanceElementCode code) {
+        return code.IsPatternDanceWithKeyPoint() ||
+               code.IsPatternDanceWithoutKeyPoint() ||
+               code.IsRequiredElement();
+    }
+    public static bool IsPatternDanceWithKeyPoint(this IceDanceElementCode code) {
+        return code is >= IceDanceElementCode.kpFO1Sq and <= IceDanceElementCode.kpBL3Sq;
+    }
+    public static bool IsPatternDanceWithoutKeyPoint(this IceDanceElementCode code) {
+        return code is >= IceDanceElementCode.FO1Sq and <= IceDanceElementCode.MB2Sq2Se;
+    }
+    public static bool IsRequiredElement(this IceDanceElementCode code) {
+        return code is >= IceDanceElementCode._1TTF and <= IceDanceElementCode.PStM;
     }
     public static bool IsSpin(this IceDanceElementCode code) {
         return code is >= IceDanceElementCode.Sp and <= IceDanceElementCode.CoSp;
@@ -197,9 +204,21 @@ internal static class IceDanceElementsCodeExtensions {
         return code is >= IceDanceElementCode.StaLi and <= IceDanceElementCode.RoLi;
     }
     public static bool IsTwizzle(this IceDanceElementCode code) {
-        return code is >= IceDanceElementCode.SqTwL and <= IceDanceElementCode.SyTwM;
+        return code.IsSequentialTwizzle() || code.IsSynchronizedTwizzle();
+    }
+    public static bool IsSequentialTwizzle(this IceDanceElementCode code) {
+        return code is >= IceDanceElementCode.SqTwL and <= IceDanceElementCode.SqTwM;
+    }
+    public static bool IsSynchronizedTwizzle(this IceDanceElementCode code) {
+        return code is >= IceDanceElementCode.SyTwL and <= IceDanceElementCode.SyTwM;
     }
     public static bool IsStepSequence(this IceDanceElementCode code) {
+        return code.IsOneFootStepSequence() || code.IsStepSequenceHoldOrNotTouchingStyleB();
+    }
+    public static bool IsOneFootStepSequence(this IceDanceElementCode code) {
+        return code is >= IceDanceElementCode.OFStL and <= IceDanceElementCode.OFStM;
+    }
+    public static bool IsStepSequenceHoldOrNotTouchingStyleB(this IceDanceElementCode code) {
         return code is >= IceDanceElementCode.DiSt and <= IceDanceElementCode.SeSt;
     }
     public static bool IsChoreographicElements(this IceDanceElementCode code) {
