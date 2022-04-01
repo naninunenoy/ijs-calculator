@@ -1,8 +1,8 @@
-﻿namespace ijs.Localizations; 
+﻿namespace ijs.Localizations;
 
 internal static class LocalizationsCsv {
     public static IEnumerable<string> LangCodes() => new[] { "en", "ja" };
-    
+
     public const string Single = @"
 code,en,ja
 1T,Single Toe Loop,1回転トウループ
@@ -127,7 +127,7 @@ PiF,Pivot Figure,ピボットフィギュア
 PSp,Pair Spin,ペアスピン
 PCoSp,Pair Combination Spin,ペアコンビネーションスピン
 ";
-    
+
     public const string IceDance = @"
 code,en,ja
 TTF1Sq,Tea-Time Foxtrot 1st Seq,ティータイムフォックストロット 第1シークエンス
